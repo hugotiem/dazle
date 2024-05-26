@@ -12,7 +12,12 @@ module.exports = {
   ],
   darkMode: 'class',
   theme: {
-    extend: {}
+    extend: {
+      colors: {
+        'custom-start': '#18181b',
+        'custom-middle': '#000000',
+      },
+    }
   },
   plugins: [
     addVariablesForColors,

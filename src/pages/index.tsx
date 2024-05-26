@@ -4,11 +4,14 @@ import { SEO } from '../components/SEO';
 import { Layout } from '../components/Layout';
 import { HeroHighlight } from '../components/ui/hero-highlight';
 import { Navbar } from '../components/Navbar';
-import { motion } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { ImageScrollAnimation } from '../components/ui/image-scroll-animation';
 import { ProductSection } from '../components/ProductSection';
-import { FreelanceSection } from '../components/FreelanceSection';
+import StickyScrollSection from '../components/FreelanceSection';
+import { useRef } from 'react';
+import Test from '../components/FreelanceSection';
+import { Footer } from '../components/Footer';
 
 interface IndexProps {
   data: any;
@@ -19,16 +22,34 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
     return <div></div>;
   }
 
-  const [image1, image2, image3] = data.images.edges.map((e: any) =>
-    getImage(e.node)
-  );
+  const [image1, image2] = data.images.edges.map((e: any) => getImage(e.node));
+
+  const fsectionRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll();
+
+  React.useEffect(() => {
+    console.log(fsectionRef.current?.offsetTop);
+  }, [scrollYProgress]);
 
   return (
-    <Layout>
-      <Navbar />
-      <div className="relative">
-        <HeroHighlight>
-          <div className="container relative">
+    <Layout className="max-w-screen relative">
+      <Navbar className="absolute w-screen" />
+      <div className="overflow-hidden">
+        <div
+          className="relative h-screen"
+          onScroll={(e) => {
+            e.preventDefault();
+            console.log('main: ', e);
+          }}
+        >
+          {/* <HeroHighlight> */}
+          <ImageScrollAnimation
+            image={image1}
+            transform={[0, -500]}
+            className="absolute w-full w-[70vw] top-[10vh] right-[-30vw]"
+          />
+          <div className="relative flex flex-col justify-center h-screen">
             <motion.h1
               initial={{
                 opacity: 0,
@@ -42,7 +63,7 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
                 duration: 0.5,
                 ease: [0.4, 0.0, 0.2, 1]
               }}
-              className="text-2xl px-4 md:text-4xl lg:text-4xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+              className="text-2xl px-4 md:text-4xl lg:text-6xl font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
             >
               Découvrez DAZLE
             </motion.h1>
@@ -59,37 +80,54 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
                 duration: 0.5,
                 ease: [0.4, 0.0, 0.2, 1]
               }}
-              className="text-2xl px-4 md:text-4xl lg:text-7xl font-bold text-neutral-700 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+              className="px-4 text-[7vw] font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto z-100"
             >
-              La Nouvelle Ère du Freelancing Créatif
+              LA NOUVELLE ÈRE DU FREELANCING CREATIF
             </motion.h1>
           </div>
-        </HeroHighlight>
-        <div className="max-w-[1200px]">
+          {/* </HeroHighlight> */}
+
           <ImageScrollAnimation
-            image={image1}
-            className="absolute top-[30%] z-100"
+            image={image2}
+            className="absolute z-100 w-full w-[70vw] top-[-20vh] left-[-20vw] w-[40vw]"
           />
-          <ImageScrollAnimation
+          {/* <ImageScrollAnimation
             image={image2}
             transform={[300, 0]}
             className="absolute top-[10%] right-0 z-100"
-          />
-          <ImageScrollAnimation
-            image={image3}
-            transform={[0, -100]}
-            className="absolute top-[-100px] right-[30%] z-100"
-          />
+          /> */}
+        </div>
+
+        <div className="h-screen overflow-hidden">
+          <ProductSection />
         </div>
       </div>
 
-      <div className="h-screen overflow-hidden">
-        <ProductSection />
+      <div ref={fsectionRef} className="bg-neutral-900">
+        <Test />
       </div>
-      <div className='h-screen bg-neutral-900'>
-        <FreelanceSection/>
+      <div className="h-screen flex flex-col justify-center">
+        <div className="max-w-[900px] mx-20 border p-10">
+          <div className="font-medium text-6xl">POURQUOI DAZLE ?</div>
+          <div className="text-xl font-light mt-10">
+            Dazle redéfinit les standards du freelancing avec ses valeurs
+            fondamentales. L'innovation est au cœur de leurs solutions créatives
+            et de pointe, permettant de surmonter les défis du freelancing
+            moderne. La communauté est également essentielle, offrant un
+            environnement solidaire où les membres se soutiennent mutuellement,
+            collaborent et grandissent ensemble. L'intégrité est une priorité,
+            avec une transparence et une éthique inébranlables dans toutes leurs
+            interactions. L'inclusivité est mise en avant, avec une plateforme
+            ouverte et accueillante pour tous, peu importe l'origine,
+            l'expérience ou les compétences. L'apprentissage continu est
+            encouragé, avec des ressources et des opportunités constantes pour
+            améliorer les compétences et le savoir-faire. Enfin, l'excellence
+            est recherchée, avec une quête incessante d'amélioration pour offrir
+            la meilleure expérience utilisateur possible.
+          </div>
+        </div>
       </div>
-      <div className='h-screen'></div>
+      <Footer />
     </Layout>
   );
 };
@@ -100,10 +138,8 @@ export const query = graphql`
       filter: {
         relativePath: {
           in: [
-            "abstract-high-contrast-white-wavy-shape-5.png"
-            "3d-render-of-abstract-glossy-blue-liquid-shape.png"
-            "3d-abstract-glossy-shape-3.png",
-            "3d-render-of-shiny-and-wavy-plastic-abstract-shape-3.png"
+            "silver-chrome-inflatable-x-shape.png"
+            "light-pink-donut-shaped-inflatable-form.png"
           ]
         }
       }
@@ -111,7 +147,7 @@ export const query = graphql`
       edges {
         node {
           childImageSharp {
-            gatsbyImageData(layout: CONSTRAINED)
+            gatsbyImageData(layout: CONSTRAINED, placeholder: NONE)
           }
         }
       }

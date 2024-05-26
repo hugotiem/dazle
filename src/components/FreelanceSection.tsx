@@ -1,41 +1,235 @@
-import React, { HTMLAttributes } from 'react';
+import React, { HTMLAttributes, useEffect, useRef, useState } from 'react';
+import { FadeCard } from './ui/fade-card';
+import { useStaticQuery, graphql } from 'gatsby';
+import { GatsbyImage, getImage } from 'gatsby-plugin-image';
+import { cn } from '../utils/cn';
+import { useInView } from 'react-intersection-observer';
+import { animated, useSpring } from 'react-spring';
+import { motion, useAnimation } from 'framer-motion';
+import { ImageScrollAnimation } from './ui/image-scroll-animation';
+import { FlipWords } from './ui/flip-words';
 
-interface FreelanceSectionProps extends HTMLAttributes<HTMLElement> {}
+interface ScrollSectionProps extends HTMLAttributes<HTMLElement> {
+  children?: React.ReactNode;
+  description?: string;
+  title?: string;
+  bgColor: string;
+}
 
-const content = [
-  {
-    title: 'Exposition Maximale',
-    description:
-      'Créez un portfolio en ligne époustouflant et mettez en avant votre style unique. Attirez l\'attention des meilleurs clients et faites-vous remarquer.',
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--cyan-500),var(--emerald-500))] flex items-center justify-center text-white">
-        Collaborative Editing
-      </div>
-    )
-  },
-  {
-    title: 'Réseau Professionnel',
-    description:
-      'Connectez-vous avec d\'autres talents créatifs, partagez vos idées, collaborez sur des projets inspirants et élargissez votre réseau.',
-    content: (
-      <div className="h-full w-full  flex items-center justify-center text-white"></div>
-    )
-  },
-  {
-    title: 'Opportunités Illimitées',
-    description:
-      "Accédez à des projets sur mesure qui correspondent à vos compétences et passions. Postulez en un clic et commencez à travailler sur des missions qui vous inspirent.",
-    content: (
-      <div className="h-full w-full bg-[linear-gradient(to_bottom_right,var(--orange-500),var(--yellow-500))] flex items-center justify-center text-white">
-        Version control
-      </div>
-    )
-  }
-];
+const ScrollSection = ({
+  title,
+  description,
+  children,
+  className,
+  bgColor,
+  ...props
+}: ScrollSectionProps) => {
+  const [ref, inView] = useInView({ threshold: 0 });
+  const springProps = useSpring({
+    transform: inView ? 'translateY(0%)' : 'translateY(100%)',
+    opacity: inView ? 1 : 0
+  });
 
-export const FreelanceSection = ({ ...props }: FreelanceSectionProps) => {
   return (
-    <section>
-    </section>
+    <div
+      ref={ref}
+      className={cn(`min-h-screen flex items-center justify-center`, className)}
+      {...props}
+    >
+      <animated.div style={springProps} className="rounded-lg shadow-lg">
+        {/* <h1 className="text-4xl font-bold">{title}</h1>
+        <p className="mt-4 text-lg">{description}</p> */}
+        {children}
+      </animated.div>
+    </div>
   );
 };
+
+const Test = () => {
+  const [isSticky, setIsSticky] = useState(false);
+  const [sectionIndex, setSectionIndex] = useState(0);
+  const scrollDemoRef = useRef<HTMLDivElement>(null);
+
+  const animation = useAnimation();
+  const animation1 = useAnimation();
+
+  const words = ['FREELANCES', 'ENTREPRISES'];
+
+  const handleScroll = () => {
+    const sectionHeight = window.innerHeight;
+    const scrollPosition = window.scrollY;
+
+    if (scrollDemoRef.current) {
+      const rect = scrollDemoRef.current.getBoundingClientRect();
+      const currentSection = Math.floor((-rect.top / rect.height) * 3);
+      setSectionIndex(currentSection);
+    }
+    setIsSticky(scrollPosition >= sectionHeight);
+  };
+
+  useEffect(() => {
+    if (sectionIndex == 0) {
+      animation.start('visible');
+      animation1.start('hidden');
+    } else if (sectionIndex == 1) {
+      animation1.start('visible');
+      animation.start('hidden');
+    } else {
+      animation1.start('hidden');
+      animation.start('hidden');
+    }
+    window.addEventListener('scroll', handleScroll);
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+    };
+  }, [sectionIndex]);
+
+  const images = useStaticQuery<any>(graphql`
+    query {
+      images: allFile(
+        filter: {
+          relativePath: {
+            in: [
+              "purple-glossy-shape-cut-out-on-black-background.png"
+              "orange-puffy-inflatable-flower.png"
+              "puffy-inflatable-pastel-red-star.png"
+            ]
+          }
+        }
+      ) {
+        edges {
+          node {
+            childImageSharp {
+              gatsbyImageData(layout: CONSTRAINED, placeholder: NONE)
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const [image1, image2, image3] = images.images.edges.map((e: any) =>
+    getImage(e.node)
+  );
+
+  const sections = [
+    {
+      title: 'Section 1',
+      description: 'This is the first section',
+      bgColor: 'bg-[#ECEEE4]',
+      section: 'FREELANCES',
+      icon: (
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75, x: 75 },
+            visible: { opacity: 1, y: 0, x: 0 }
+          }}
+          initial="hidden"
+          animate={animation}
+          transition={{ duration: 0.5 }}
+          className="absolute left-[-20vw] w-[60vw]"
+        >
+          <ImageScrollAnimation transform={[500, 0]} image={image2} />
+        </motion.div>
+      )
+    },
+    {
+      title: 'Section 2',
+      description: 'This is the second section',
+      bgColor: 'bg-[#FECCC0]',
+      section: 'ENTREPRISES',
+      icon: (
+        <motion.div
+          variants={{
+            hidden: { opacity: 0, y: 75, x: 75 },
+            visible: { opacity: 1, y: 0, x: 0 }
+          }}
+          initial="hidden"
+          animate={animation1}
+          transition={{ duration: 0.5 }}
+          className="absolute right-[-20vw] w-[60vw]"
+        >
+          <ImageScrollAnimation transform={[500, 0]} image={image3} />
+        </motion.div>
+      )
+    }
+  ];
+
+  const getString = () => {
+    switch (sectionIndex) {
+      case 0:
+        return 'FREELANCES';
+      case 1:
+        return 'ENTREPRISES';
+      default:
+        return 'PERSONNES';
+    }
+  };
+
+  return (
+    <div className="relative" ref={scrollDemoRef}>
+      <div
+        className={`h-screen w-screen sticky top-0 z-50 bg-neutral overflow-hidden shadow-md transition-all duration-300 ${sections[sectionIndex]?.bgColor} z-100`}
+      >
+        <div className="relative overflow-hidden ">
+          {sections.map((e, index) => (
+            <div key={e.title}> {e.icon}</div>
+          ))}
+
+          <div className=" h-screen flex flex-col container mx-auto justify-center">
+            <div className="relative">
+              <div className="font-medium text-6xl">
+                POUR LES
+                <FlipWords
+                  word={sections[sectionIndex]?.section}
+                  index={sectionIndex}
+                />
+              </div>
+              {/* <div className="font-medium text-6xl">POUR LES ENTREPRISES</div> */}
+            </div>
+            <div className="font-light text-xl mb-10">
+              Vous êtes créatif ? Débutant, pro ou vétéran, Dazle est votre
+              tremplin vers le succès.
+            </div>
+            <div className="mx-auto flex max-w-6xl flex-col justify-center space-y-8 xl:flex-row xl:space-y-0 xl:space-x-12">
+              <FadeCard
+                image={image1}
+                hide={sectionIndex != 0}
+                title=" Exposition Maximale"
+                description=" Créez un portfolio en ligne époustouflant et mettez en avant
+                  votre style unique. Attirez l'attention des meilleurs clients
+                  et faites-vous remarquer."
+              />
+
+              <FadeCard
+                image={image1}
+                hide={sectionIndex != 0}
+                title=" Réseau Professionne"
+                description=" Connectez-vous avec d'autres talents créatifs, partagez vos idées, collaborez sur des projets inspirants et élargissez votre réseau."
+                delay={0.1}
+              />
+              <FadeCard
+                image={image1}
+                hide={sectionIndex != 0}
+                title=" Opportunités Illimitées"
+                description=" CAccédez à des projets sur mesure qui correspondent à vos compétences et passions. Postulez en un clic et commencez à travailler sur des missions qui vous inspirent."
+                delay={0.2}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      {sections.map((section, index) => (
+        <ScrollSection
+          key={index}
+          title={section.title}
+          description={section.description}
+          bgColor={section.bgColor}
+          className="relative"
+        ></ScrollSection>
+      ))}
+    </div>
+  );
+};
+
+export default Test;

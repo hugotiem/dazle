@@ -16,24 +16,15 @@ export const ProductSection = ({
     target: containerRef
   });
 
-  const images = useStaticQuery<any>(graphql`
+  const image = useStaticQuery<any>(graphql`
     query {
-      images: allFile(
-        filter: {
-          relativePath: {
-            in: [
-              "3d-render-of-shiny-and-wavy-plastic-abstract-shape-3.png"
-              "3d-render-of-wide-abstract-light-blue-translucent-shape.png"
-            ]
-          }
+      image: file(
+        relativePath: {
+          eq: "3d-render-of-warm-white-abstract-wavy-shape-kinda-glossy-2.png"
         }
       ) {
-        edges {
-          node {
-            childImageSharp {
-              gatsbyImageData(layout: CONSTRAINED)
-            }
-          }
+        childImageSharp {
+          gatsbyImageData(layout: CONSTRAINED, placeholder: NONE)
         }
       }
     }
@@ -41,21 +32,20 @@ export const ProductSection = ({
 
   const translate = useTransform(scrollYProgress, [0, 1], [500, 0]);
 
-  const [image1, image2] = images.images.edges.map((e: any) => getImage(e.node));
+  const imageData = getImage(image.image);
+
+  console.log(imageData)
 
   return (
-    <section
-      {...props}
-      className={cn('relative mx-auto', className)}
-    >
+    <section {...props} className={cn('relative container mx-auto', className)}>
       <ImageScrollAnimation
-        className="absolute left-20"
+        className="absolute top-[-20vh] w-[70%]"
         transform={[200, 0]}
-        image={image1}
+        image={imageData}
       />
-      <motion.div
+      <div
         className="max-w-[700px] mx-auto p-7 border backdrop-blur-sm rounded-xl"
-        style={{ translateY: translate }}
+        // style={{ translateY: translate }}
       >
         <h1 className="text-4xl font-bold">
           Propulsez Votre Talent vers de Nouveaux Sommets
@@ -66,12 +56,12 @@ export const ProductSection = ({
           Rejoignez une communauté dynamique qui valorise chaque aspect de votre
           talent et vous ouvre les portes d'opportunités sans fin.
         </p>
-      </motion.div>
-      <ImageScrollAnimation
+      </div>
+      {/* <ImageScrollAnimation
         className="absolute mx-auto w-[100%] right-[-200px] rotate-[-20deg] min-w-[700px]"
         transform={[100, 0]}
         image={image2}
-      />
+      /> */}
     </section>
   );
 };

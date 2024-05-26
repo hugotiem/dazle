@@ -1,9 +1,10 @@
-import React from 'react';
+import React, { HTMLAttributes } from 'react';
+import { cn } from '../utils/cn';
 
-interface LayoutProps {
+interface LayoutProps extends HTMLAttributes<HTMLElement>{
   children?: React.ReactNode;
 }
 
-export const Layout = ({ children }: LayoutProps) => {
-  return <main className='relative'>{children}</main>;
+export const Layout = ({ children, className, ...props }: LayoutProps) => {
+  return <main {...props} className={cn("relative", className)}>{children}</main>;
 };

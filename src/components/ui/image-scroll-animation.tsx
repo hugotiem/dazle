@@ -27,7 +27,7 @@ export const ImageScrollAnimation = ({
   );
 
   return (
-    <div {...props} className={cn('w-[400px]', className)}>
+    <div {...props} className={cn( className)}>
       <motion.div
         style={{
           translateY: translate
