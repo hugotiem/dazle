@@ -64,7 +64,7 @@ export const FadeCard = ({
 
   return (
     <div className="relative">
-      <AnimatePresence>
+      <AnimatePresence mode="wait">
         {hide ? undefined : (
           <motion.div
             ref={ref}
@@ -74,20 +74,23 @@ export const FadeCard = ({
               y: -25,
               x: -5
             }}
-            
             animate={{ opacity: 1, y: 0, x: 0 }}
             transition={{ duration: 0.1, delay: delay ?? 0 }}
-            className="absolute h-auto w-[340px] overflow-hidden rounded-2xl z-[100]"
+            className="absolute h-auto w-[340px] overflow-hidden backdrop-blur-sm bg-opacity-[.2] bg-white border border-white rounded-2xl z-[100]"
           >
-            <div className="bg-custom-gradient from-custom-start to-custom-middle rounded-lg shadow-lg">
+            <div className="text-neutral-900 rounded-lg shadow-lg">
               <div className="flex flex-col space-y-2 ">
-                <div className="">
-                  <GatsbyImage className="h-full" image={image} alt="" />
-                </div>
+                {/* <div className="">
+                  <GatsbyImage
+                    className="h-full opacity-gradient"
+                    image={image}
+                    alt=""
+                  />
+                </div> */}
 
                 <div className="p-4 px-8 pb-8">
-                  <h1 className="text-sm font-bold text-white">{title}</h1>
-                  <p className="text-sm text-slate-400">{description}</p>
+                  <h1 className="font-medium text-xl">{title}</h1>
+                  <p className="text-lg font-light">{description}</p>
                 </div>
               </div>
             </div>

@@ -10,8 +10,9 @@ import { ImageScrollAnimation } from '../components/ui/image-scroll-animation';
 import { ProductSection } from '../components/ProductSection';
 import StickyScrollSection from '../components/FreelanceSection';
 import { useRef } from 'react';
-import Test from '../components/FreelanceSection';
 import { Footer } from '../components/Footer';
+import { FeatureSection } from '../components/FeatureSection';
+import FreelanceSection from '../components/FreelanceSection';
 
 interface IndexProps {
   data: any;
@@ -27,10 +28,6 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
   const fsectionRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll();
-
-  React.useEffect(() => {
-    console.log(fsectionRef.current?.offsetTop);
-  }, [scrollYProgress]);
 
   return (
     <Layout className="max-w-screen relative">
@@ -102,9 +99,9 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
           <ProductSection />
         </div>
       </div>
-
+      <FeatureSection />
       <div ref={fsectionRef} className="bg-neutral-900">
-        <Test />
+        <FreelanceSection />
       </div>
       <div className="h-screen flex flex-col justify-center">
         <div className="max-w-[900px] mx-20 border p-10">

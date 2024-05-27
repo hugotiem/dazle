@@ -45,26 +45,19 @@ const ScrollSection = ({
   );
 };
 
-const Test = () => {
-  const [isSticky, setIsSticky] = useState(false);
+const FreelanceSection = () => {
   const [sectionIndex, setSectionIndex] = useState(0);
   const scrollDemoRef = useRef<HTMLDivElement>(null);
 
   const animation = useAnimation();
   const animation1 = useAnimation();
 
-  const words = ['FREELANCES', 'ENTREPRISES'];
-
   const handleScroll = () => {
-    const sectionHeight = window.innerHeight;
-    const scrollPosition = window.scrollY;
-
     if (scrollDemoRef.current) {
       const rect = scrollDemoRef.current.getBoundingClientRect();
       const currentSection = Math.floor((-rect.top / rect.height) * 3);
       setSectionIndex(currentSection);
     }
-    setIsSticky(scrollPosition >= sectionHeight);
   };
 
   useEffect(() => {
@@ -90,8 +83,8 @@ const Test = () => {
         filter: {
           relativePath: {
             in: [
-              "purple-glossy-shape-cut-out-on-black-background.png"
               "orange-puffy-inflatable-flower.png"
+              "purple-glossy-shape-cut-out-on-black-background.png"
               "puffy-inflatable-pastel-red-star.png"
             ]
           }
@@ -115,7 +108,7 @@ const Test = () => {
   const sections = [
     {
       title: 'Section 1',
-      description: 'This is the first section',
+      description: ' Vous êtes créatif ? Débutant, pro ou vétéran, Dazle est votre tremplin vers le succès.',
       bgColor: 'bg-[#ECEEE4]',
       section: 'FREELANCES',
       icon: (
@@ -135,7 +128,7 @@ const Test = () => {
     },
     {
       title: 'Section 2',
-      description: 'This is the second section',
+      description: 'Développez votre vision avec les meilleurs talents créatifs du marché.',
       bgColor: 'bg-[#FECCC0]',
       section: 'ENTREPRISES',
       icon: (
@@ -149,34 +142,23 @@ const Test = () => {
           transition={{ duration: 0.5 }}
           className="absolute right-[-20vw] w-[60vw]"
         >
-          <ImageScrollAnimation transform={[500, 0]} image={image3} />
+          <ImageScrollAnimation transform={[500, 0]} image={image1} />
         </motion.div>
       )
     }
   ];
-
-  const getString = () => {
-    switch (sectionIndex) {
-      case 0:
-        return 'FREELANCES';
-      case 1:
-        return 'ENTREPRISES';
-      default:
-        return 'PERSONNES';
-    }
-  };
 
   return (
     <div className="relative" ref={scrollDemoRef}>
       <div
         className={`h-screen w-screen sticky top-0 z-50 bg-neutral overflow-hidden shadow-md transition-all duration-300 ${sections[sectionIndex]?.bgColor} z-100`}
       >
-        <div className="relative overflow-hidden ">
+        <div className="relative overflow-hidden">
           {sections.map((e, index) => (
             <div key={e.title}> {e.icon}</div>
           ))}
 
-          <div className=" h-screen flex flex-col container mx-auto justify-center">
+          <div className="relative h-screen flex flex-col container mx-auto justify-center text-neutral-900">
             <div className="relative">
               <div className="font-medium text-6xl">
                 POUR LES
@@ -188,33 +170,82 @@ const Test = () => {
               {/* <div className="font-medium text-6xl">POUR LES ENTREPRISES</div> */}
             </div>
             <div className="font-light text-xl mb-10">
-              Vous êtes créatif ? Débutant, pro ou vétéran, Dazle est votre
-              tremplin vers le succès.
+              {sections[sectionIndex]?.description}
             </div>
-            <div className="mx-auto flex max-w-6xl flex-col justify-center space-y-8 xl:flex-row xl:space-y-0 xl:space-x-12">
-              <FadeCard
-                image={image1}
-                hide={sectionIndex != 0}
-                title=" Exposition Maximale"
-                description=" Créez un portfolio en ligne époustouflant et mettez en avant
+            <div className="relative">
+              <div className="opacity-0 mx-auto flex max-w-6xl flex-col justify-center space-y-8 xl:flex-row xl:space-y-0 xl:space-x-12">
+                <FadeCard
+                  image={image3}
+                  hide={sectionIndex != 0}
+                  title=" Exposition Maximale"
+                  description=" Créez un portfolio en ligne époustouflant et mettez en avant
                   votre style unique. Attirez l'attention des meilleurs clients
                   et faites-vous remarquer."
-              />
+                />
 
-              <FadeCard
-                image={image1}
-                hide={sectionIndex != 0}
-                title=" Réseau Professionne"
-                description=" Connectez-vous avec d'autres talents créatifs, partagez vos idées, collaborez sur des projets inspirants et élargissez votre réseau."
-                delay={0.1}
-              />
-              <FadeCard
-                image={image1}
-                hide={sectionIndex != 0}
-                title=" Opportunités Illimitées"
-                description=" CAccédez à des projets sur mesure qui correspondent à vos compétences et passions. Postulez en un clic et commencez à travailler sur des missions qui vous inspirent."
-                delay={0.2}
-              />
+                <FadeCard
+                  image={image3}
+                  hide={sectionIndex != 0}
+                  title=" Réseau Professionnel"
+                  description=" Connectez-vous avec d'autres talents créatifs, partagez vos idées, collaborez sur des projets inspirants et élargissez votre réseau."
+                  delay={0.1}
+                />
+                <FadeCard
+                  image={image3}
+                  hide={sectionIndex != 0}
+                  title=" Opportunités Illimitées"
+                  description=" Accédez à des projets sur mesure qui correspondent à vos compétences et passions. Postulez en un clic et commencez à travailler sur des missions qui vous inspirent."
+                  delay={0.2}
+                />
+              </div>
+              <div className=" mx-auto absolute top-0 flex max-w-6xl flex-col justify-center space-y-8 xl:flex-row xl:space-y-0 xl:space-x-12">
+                <FadeCard
+                  image={image3}
+                  hide={sectionIndex != 0}
+                  title=" Exposition Maximale"
+                  description=" Créez un portfolio en ligne époustouflant et mettez en avant
+                  votre style unique. Attirez l'attention des meilleurs clients
+                  et faites-vous remarquer."
+                />
+
+                <FadeCard
+                  image={image3}
+                  hide={sectionIndex != 0}
+                  title=" Réseau Professionnel"
+                  description=" Connectez-vous avec d'autres talents créatifs, partagez vos idées, collaborez sur des projets inspirants et élargissez votre réseau."
+                  delay={0.1}
+                />
+                <FadeCard
+                  image={image3}
+                  hide={sectionIndex != 0}
+                  title=" Opportunités Illimitées"
+                  description=" Accédez à des projets sur mesure qui correspondent à vos compétences et passions. Postulez en un clic et commencez à travailler sur des missions qui vous inspirent."
+                  delay={0.2}
+                />
+              </div>
+              <div className=" mx-auto absolute top-0 flex max-w-6xl flex-col justify-center space-y-8 xl:flex-row xl:space-y-0 xl:space-x-12">
+                <FadeCard
+                  image={image3}
+                  hide={sectionIndex != 1}
+                  title="Trouver les Meilleurs Talents"
+                  description="Parcourez des portfolios soigneusement présentés pour trouver les créatifs parfaits pour vos projets. Assurez-vous de la qualité avec des profils vérifiés et des retours authentiques."
+                />
+
+                <FadeCard
+                  image={image3}
+                  hide={sectionIndex != 1}
+                  title="Gestion de Projet Simplifiée"
+                  description="Utilisez nos outils de gestion de projet intégrés pour suivre les progrès, communiquer efficacement et garantir des livraisons ponctuelles et de haute qualité."
+                  delay={0.1}
+                />
+                <FadeCard
+                  image={image3}
+                  hide={sectionIndex != 1}
+                  title="Publication Rapide et Facile"
+                  description="Publiez vos offres de projet en quelques minutes et recevez des propositions de freelances qualifiés prêts à transformer vos idées en réalité."
+                  delay={0.2}
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -232,4 +263,4 @@ const Test = () => {
   );
 };
 
-export default Test;
+export default FreelanceSection;
