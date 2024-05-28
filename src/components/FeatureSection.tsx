@@ -11,21 +11,18 @@ export const FeatureSection = ({ ...props }: FeatureSectionProps) => {
 
   const sections = [
     {
-      bgColor: 'bg-lime-200',
       textColor: '',
       ref: useRef<HTMLDivElement>(null),
       title: 'Portfolios Personnalisés',
       description: 'Créez des portfolios visuellement attrayants.'
     },
     {
-      bgColor: 'bg-orange-200',
       textColor: '',
       ref: useRef<HTMLDivElement>(null),
       title: 'Outils de Collaboration',
       description: 'Intégration de chats, de partage de fichiers, etc.'
     },
     {
-      bgColor: 'bg-lime-200',
       textColor: '',
       ref: useRef<HTMLDivElement>(null),
       title: 'Suivi des tâches et des délais.',
@@ -46,8 +43,6 @@ export const FeatureSection = ({ ...props }: FeatureSectionProps) => {
           return;
         index++;
       });
-
-      console.log(index);
 
       setSectionIndex(index);
     }
@@ -76,7 +71,7 @@ export const FeatureSection = ({ ...props }: FeatureSectionProps) => {
     <section {...props}>
       <div className="relative" ref={ref}>
         <div
-          className={`h-screen w-screen sticky top-0 z-50 bg-neutral overflow-hidden transition-all duration-300 ${sectionIndex > 2 ? 'bg-neutral-900' : sections[sectionIndex]?.bgColor} z-100`}
+          className={`h-screen w-screen sticky top-0 z-50 bg-neutral overflow-hidden transition-all duration-300 ${sectionIndex > 2 ? 'bg-neutral-900' : 'bg-transparent'} z-100`}
         >
           <div className="flex justify-around items-center relative overflow-hidden">
             <div className="relative h-screen flex flex-col mx-auto justify-center text-neutral-900">

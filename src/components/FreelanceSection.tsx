@@ -26,7 +26,7 @@ const ScrollSection = ({
 }: ScrollSectionProps) => {
   const [ref, inView] = useInView({ threshold: 0 });
   const springProps = useSpring({
-    transform: inView ? 'translateY(0%)' : 'translateY(100%)',
+    // transform: inView ? 'translateY(0%)' : 'translateY(100%)',
     opacity: inView ? 1 : 0
   });
 
@@ -108,7 +108,8 @@ const FreelanceSection = () => {
   const sections = [
     {
       title: 'Section 1',
-      description: ' Vous êtes créatif ? Débutant, pro ou vétéran, Dazle est votre tremplin vers le succès.',
+      description:
+        ' Vous êtes créatif ? Débutant, pro ou vétéran, Dazle est votre tremplin vers le succès.',
       bgColor: 'bg-[#ECEEE4]',
       section: 'FREELANCES',
       icon: (
@@ -128,7 +129,8 @@ const FreelanceSection = () => {
     },
     {
       title: 'Section 2',
-      description: 'Développez votre vision avec les meilleurs talents créatifs du marché.',
+      description:
+        'Développez votre vision avec les meilleurs talents créatifs du marché.',
       bgColor: 'bg-[#FECCC0]',
       section: 'ENTREPRISES',
       icon: (

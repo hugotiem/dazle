@@ -13,6 +13,7 @@ import { useRef } from 'react';
 import { Footer } from '../components/Footer';
 import { FeatureSection } from '../components/FeatureSection';
 import FreelanceSection from '../components/FreelanceSection';
+import { BackgroundGradientAnimation } from '../components/ui/background-gradient-animation';
 
 interface IndexProps {
   data: any;
@@ -25,82 +26,70 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
 
   const [image1, image2] = data.images.edges.map((e: any) => getImage(e.node));
 
-  const fsectionRef = useRef<HTMLDivElement>(null);
-
-  const { scrollYProgress } = useScroll();
-
   return (
     <Layout className="max-w-screen relative">
       <Navbar className="absolute w-screen" />
-      <div className="overflow-hidden">
-        <div
-          className="relative h-screen"
-          onScroll={(e) => {
-            e.preventDefault();
-            console.log('main: ', e);
-          }}
-        >
-          {/* <HeroHighlight> */}
-          <ImageScrollAnimation
-            image={image1}
-            transform={[0, -500]}
-            className="absolute w-full w-[70vw] top-[10vh] right-[-30vw]"
-          />
-          <div className="relative flex flex-col justify-center h-screen">
-            <motion.h1
-              initial={{
-                opacity: 0,
-                y: 20
-              }}
-              animate={{
-                opacity: 1,
-                y: [20, -5, 0]
-              }}
-              transition={{
-                duration: 0.5,
-                ease: [0.4, 0.0, 0.2, 1]
-              }}
-              className="text-2xl px-4 md:text-4xl lg:text-6xl font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
-            >
-              Découvrez DAZLE
-            </motion.h1>
-            <motion.h1
-              initial={{
-                opacity: 0,
-                y: 20
-              }}
-              animate={{
-                opacity: 1,
-                y: [20, -5, 0]
-              }}
-              transition={{
-                duration: 0.5,
-                ease: [0.4, 0.0, 0.2, 1]
-              }}
-              className="px-4 text-[7vw] font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto z-100"
-            >
-              LA NOUVELLE ÈRE DU FREELANCING CREATIF
-            </motion.h1>
+
+      <div className="overflow-y-visible overflow-x-clip">
+        <BackgroundGradientAnimation>
+          <div className="absolute h-screen z-50 pointer-events-none">
+            <div className="relative w-screen">
+              <ImageScrollAnimation
+                image={image1}
+                transform={[0, -500]}
+                className="absolute w-full w-[70vw] top-[10vh] right-[-30vw]"
+              />
+              <div className="relative flex flex-col justify-center h-screen z-100">
+                <motion.h1
+                  initial={{
+                    opacity: 0,
+                    y: 20
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: [20, -5, 0]
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.4, 0.0, 0.2, 1]
+                  }}
+                  className="text-2xl px-4 md:text-4xl lg:text-6xl font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
+                >
+                  Découvrez <span className=' bg-gradient-to-tr from-blue-400 via-pink-400 to-white text-transparent bg-clip-text'>DAZLE</span> 
+                </motion.h1>
+                <motion.h1
+                  initial={{
+                    opacity: 0,
+                    y: 20
+                  }}
+                  animate={{
+                    opacity: 1,
+                    y: [20, -5, 0]
+                  }}
+                  transition={{
+                    duration: 0.5,
+                    ease: [0.4, 0.0, 0.2, 1]
+                  }}
+                  className="px-4 text-[7vw] font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto z-100"
+                >
+                  LA NOUVELLE ÈRE DU FREELANCING CREATIF
+                </motion.h1>
+              </div>
+
+              <ImageScrollAnimation
+                image={image2}
+                className="absolute z-100 w-full w-[70vw] top-[-20vh] left-[-20vw] w-[40vw]"
+              />
+            </div>
           </div>
-          {/* </HeroHighlight> */}
+        </BackgroundGradientAnimation>
 
-          <ImageScrollAnimation
-            image={image2}
-            className="absolute z-100 w-full w-[70vw] top-[-20vh] left-[-20vw] w-[40vw]"
-          />
-          {/* <ImageScrollAnimation
-            image={image2}
-            transform={[300, 0]}
-            className="absolute top-[10%] right-0 z-100"
-          /> */}
-        </div>
-
-        <div className="h-screen overflow-hidden">
+        <div className="">
           <ProductSection />
         </div>
       </div>
       <FeatureSection />
-      <div ref={fsectionRef} className="bg-neutral-900">
+      <div className="bg-neutral-900">
         <FreelanceSection />
       </div>
       <div className="h-screen flex flex-col justify-center">
@@ -135,8 +124,8 @@ export const query = graphql`
       filter: {
         relativePath: {
           in: [
-            "silver-chrome-inflatable-x-shape.png"
-            "light-pink-donut-shaped-inflatable-form.png"
+            "orange-glossy-inflatable-cube.png"
+            "red-ring-inflatable-shape.png"
           ]
         }
       }

@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 .bg-custom-gradient {
-  background: linear-gradient(30deg, var(--tw-gradient-from) 0%, var(--tw-gradient-to) 45.71849593495936%);
+  background: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
 }
+
 
 .opacity-gradient {
   position: relative;
