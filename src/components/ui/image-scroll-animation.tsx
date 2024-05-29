@@ -3,9 +3,10 @@ import { graphql, useStaticQuery } from 'gatsby';
 import { GatsbyImage } from 'gatsby-plugin-image';
 import React, { HTMLAttributes, useRef } from 'react';
 import { cn } from '../../utils/cn';
+import { DynamicImage } from './relative-path-image';
 
 interface ImageScrollAnimationProps extends HTMLAttributes<HTMLElement> {
-  image: any;
+  image: string;
   transform?: [from: number, to: number];
 }
 
@@ -27,14 +28,14 @@ export const ImageScrollAnimation = ({
   );
 
   return (
-    <div {...props} className={cn( className)}>
+    <div {...props} className={cn(className)}>
       <motion.div
         style={{
           translateY: translate
         }}
       >
         {image ? (
-          <GatsbyImage image={image} alt="A descriptive alt text" />
+          <DynamicImage src={image} alt="A descriptive alt text" />
         ) : undefined}
       </motion.div>
     </div>

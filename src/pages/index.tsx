@@ -14,18 +14,9 @@ import { Footer } from '../components/Footer';
 import { FeatureSection } from '../components/FeatureSection';
 import FreelanceSection from '../components/FreelanceSection';
 import { BackgroundGradientAnimation } from '../components/ui/background-gradient-animation';
+import { TestimonialSection } from '../components/TestimonialSection';
 
-interface IndexProps {
-  data: any;
-}
-
-const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
-  if (!data.images.edges) {
-    return <div></div>;
-  }
-
-  const [image1, image2] = data.images.edges.map((e: any) => getImage(e.node));
-
+const IndexPage: React.FC<PageProps> = () => {
   return (
     <Layout className="max-w-screen relative">
       <Navbar className="absolute w-screen" />
@@ -35,7 +26,7 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
           <div className="absolute h-screen z-50 pointer-events-none">
             <div className="relative w-screen">
               <ImageScrollAnimation
-                image={image1}
+                image="orange-glossy-inflatable-cube.png"
                 transform={[0, -500]}
                 className="absolute w-full w-[70vw] top-[10vh] right-[-30vw]"
               />
@@ -55,7 +46,10 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
                   }}
                   className="text-2xl px-4 md:text-4xl lg:text-6xl font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
                 >
-                  Découvrez <span className=' bg-gradient-to-tr from-blue-400 via-pink-400 to-white text-transparent bg-clip-text'>DAZLE</span> 
+                  Découvrez{' '}
+                  <span className=" bg-gradient-to-tr from-blue-400 via-pink-400 to-white text-transparent bg-clip-text">
+                    DAZLE
+                  </span>
                 </motion.h1>
                 <motion.h1
                   initial={{
@@ -70,14 +64,14 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
                     duration: 0.5,
                     ease: [0.4, 0.0, 0.2, 1]
                   }}
-                  className="px-4 text-[7vw] font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto z-100"
+                  className="px-4 text-[7vw] 2xl:text-[90pt] font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto z-100"
                 >
                   LA NOUVELLE ÈRE DU FREELANCING CREATIF
                 </motion.h1>
               </div>
 
               <ImageScrollAnimation
-                image={image2}
+                image="red-ring-inflatable-shape.png"
                 className="absolute z-100 w-full w-[70vw] top-[-20vh] left-[-20vw] w-[40vw]"
               />
             </div>
@@ -113,33 +107,11 @@ const IndexPage: React.FC<PageProps> = ({ data }: IndexProps) => {
           </div>
         </div>
       </div>
+      <TestimonialSection />
       <Footer />
     </Layout>
   );
 };
-
-export const query = graphql`
-  query {
-    images: allFile(
-      filter: {
-        relativePath: {
-          in: [
-            "orange-glossy-inflatable-cube.png"
-            "red-ring-inflatable-shape.png"
-          ]
-        }
-      }
-    ) {
-      edges {
-        node {
-          childImageSharp {
-            gatsbyImageData(layout: CONSTRAINED, placeholder: NONE)
-          }
-        }
-      }
-    }
-  }
-`;
 
 export default IndexPage;
 

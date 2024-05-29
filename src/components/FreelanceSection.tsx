@@ -37,8 +37,6 @@ const ScrollSection = ({
       {...props}
     >
       <animated.div style={springProps} className="rounded-lg shadow-lg">
-        {/* <h1 className="text-4xl font-bold">{title}</h1>
-        <p className="mt-4 text-lg">{description}</p> */}
         {children}
       </animated.div>
     </div>
@@ -77,34 +75,6 @@ const FreelanceSection = () => {
     };
   }, [sectionIndex]);
 
-  const images = useStaticQuery<any>(graphql`
-    query {
-      images: allFile(
-        filter: {
-          relativePath: {
-            in: [
-              "orange-puffy-inflatable-flower.png"
-              "purple-glossy-shape-cut-out-on-black-background.png"
-              "puffy-inflatable-pastel-red-star.png"
-            ]
-          }
-        }
-      ) {
-        edges {
-          node {
-            childImageSharp {
-              gatsbyImageData(layout: CONSTRAINED, placeholder: NONE)
-            }
-          }
-        }
-      }
-    }
-  `);
-
-  const [image1, image2, image3] = images.images.edges.map((e: any) =>
-    getImage(e.node)
-  );
-
   const sections = [
     {
       title: 'Section 1',
@@ -123,7 +93,10 @@ const FreelanceSection = () => {
           transition={{ duration: 0.5 }}
           className="absolute left-[-20vw] w-[60vw]"
         >
-          <ImageScrollAnimation transform={[500, 0]} image={image2} />
+          <ImageScrollAnimation
+            transform={[500, 0]}
+             image="orange-puffy-inflatable-flower.png"
+          />
         </motion.div>
       )
     },
@@ -144,7 +117,11 @@ const FreelanceSection = () => {
           transition={{ duration: 0.5 }}
           className="absolute right-[-20vw] w-[60vw]"
         >
-          <ImageScrollAnimation transform={[500, 0]} image={image1} />
+          <ImageScrollAnimation
+            transform={[500, 0]}
+            image="puffy-inflatable-pastel-red-star.png"
+           
+          />
         </motion.div>
       )
     }
@@ -169,7 +146,6 @@ const FreelanceSection = () => {
                   index={sectionIndex}
                 />
               </div>
-              {/* <div className="font-medium text-6xl">POUR LES ENTREPRISES</div> */}
             </div>
             <div className="font-light text-xl mb-10">
               {sections[sectionIndex]?.description}
@@ -177,7 +153,6 @@ const FreelanceSection = () => {
             <div className="relative">
               <div className="opacity-0 mx-auto flex max-w-6xl flex-col justify-center space-y-8 xl:flex-row xl:space-y-0 xl:space-x-12">
                 <FadeCard
-                  image={image3}
                   hide={sectionIndex != 0}
                   title=" Exposition Maximale"
                   description=" Créez un portfolio en ligne époustouflant et mettez en avant
@@ -186,14 +161,12 @@ const FreelanceSection = () => {
                 />
 
                 <FadeCard
-                  image={image3}
                   hide={sectionIndex != 0}
                   title=" Réseau Professionnel"
                   description=" Connectez-vous avec d'autres talents créatifs, partagez vos idées, collaborez sur des projets inspirants et élargissez votre réseau."
                   delay={0.1}
                 />
                 <FadeCard
-                  image={image3}
                   hide={sectionIndex != 0}
                   title=" Opportunités Illimitées"
                   description=" Accédez à des projets sur mesure qui correspondent à vos compétences et passions. Postulez en un clic et commencez à travailler sur des missions qui vous inspirent."
@@ -202,7 +175,6 @@ const FreelanceSection = () => {
               </div>
               <div className=" mx-auto absolute top-0 flex max-w-6xl flex-col justify-center space-y-8 xl:flex-row xl:space-y-0 xl:space-x-12">
                 <FadeCard
-                  image={image3}
                   hide={sectionIndex != 0}
                   title=" Exposition Maximale"
                   description=" Créez un portfolio en ligne époustouflant et mettez en avant
@@ -211,14 +183,12 @@ const FreelanceSection = () => {
                 />
 
                 <FadeCard
-                  image={image3}
                   hide={sectionIndex != 0}
                   title=" Réseau Professionnel"
                   description=" Connectez-vous avec d'autres talents créatifs, partagez vos idées, collaborez sur des projets inspirants et élargissez votre réseau."
                   delay={0.1}
                 />
                 <FadeCard
-                  image={image3}
                   hide={sectionIndex != 0}
                   title=" Opportunités Illimitées"
                   description=" Accédez à des projets sur mesure qui correspondent à vos compétences et passions. Postulez en un clic et commencez à travailler sur des missions qui vous inspirent."
@@ -227,21 +197,18 @@ const FreelanceSection = () => {
               </div>
               <div className=" mx-auto absolute top-0 flex max-w-6xl flex-col justify-center space-y-8 xl:flex-row xl:space-y-0 xl:space-x-12">
                 <FadeCard
-                  image={image3}
                   hide={sectionIndex != 1}
                   title="Trouver les Meilleurs Talents"
                   description="Parcourez des portfolios soigneusement présentés pour trouver les créatifs parfaits pour vos projets. Assurez-vous de la qualité avec des profils vérifiés et des retours authentiques."
                 />
 
                 <FadeCard
-                  image={image3}
                   hide={sectionIndex != 1}
                   title="Gestion de Projet Simplifiée"
                   description="Utilisez nos outils de gestion de projet intégrés pour suivre les progrès, communiquer efficacement et garantir des livraisons ponctuelles et de haute qualité."
                   delay={0.1}
                 />
                 <FadeCard
-                  image={image3}
                   hide={sectionIndex != 1}
                   title="Publication Rapide et Facile"
                   description="Publiez vos offres de projet en quelques minutes et recevez des propositions de freelances qualifiés prêts à transformer vos idées en réalité."

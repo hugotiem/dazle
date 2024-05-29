@@ -16,7 +16,6 @@ interface FadeCardProps extends HTMLAttributes<HTMLElement> {
   description: string;
   delay?: number;
   index?: number;
-  image: IGatsbyImageData;
   hide?: boolean;
 }
 
@@ -44,7 +43,6 @@ export const FadeCard = ({
   variant,
   index,
   delay,
-  image,
   hide,
   className,
   children,
@@ -103,10 +101,6 @@ export const FadeCard = ({
       >
         <div className="bg-custom-gradient from-custom-start to-custom-middle rounded-lg shadow-lg">
           <div className="flex flex-col space-y-2 ">
-            <div className="">
-              <GatsbyImage className="h-full" image={image} alt="" />
-            </div>
-
             <div className="p-4 px-8 pb-8">
               <h1 className="text-sm font-bold text-white">{title}</h1>
               <p className="text-sm text-slate-400">{description}</p>
