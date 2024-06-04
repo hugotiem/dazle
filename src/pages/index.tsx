@@ -86,7 +86,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <FeatureSection />
       <div className="bg-neutral-900">
         <FreelanceSection />
-      </div>
+      </div> 
       <div className="h-screen flex flex-col justify-center">
         <div className="max-w-[900px] mx-20 border p-10">
           <div className="font-medium text-6xl">POURQUOI DAZLE ?</div>
