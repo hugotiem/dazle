@@ -2,20 +2,18 @@ import * as React from 'react';
 import { graphql, type HeadFC, type PageProps } from 'gatsby';
 import { SEO } from '../components/SEO';
 import { Layout } from '../components/Layout';
-import { HeroHighlight } from '../components/ui/hero-highlight';
 import { Navbar } from '../components/Navbar';
 import { motion, useScroll } from 'framer-motion';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
 import { ImageScrollAnimation } from '../components/ui/image-scroll-animation';
 import { ProductSection } from '../components/ProductSection';
-import StickyScrollSection from '../components/FreelanceSection';
-import { useRef } from 'react';
 import { Footer } from '../components/Footer';
 import { FeatureSection } from '../components/FeatureSection';
 import FreelanceSection from '../components/FreelanceSection';
 import { BackgroundGradientAnimation } from '../components/ui/background-gradient-animation';
 import { TestimonialSection } from '../components/TestimonialSection';
 import { AuroraBackground } from '../components/ui/aurora-background';
+import { ArrowDown } from 'lucide-react';
+import { HoverBorderGradient } from '../components/ui/hover-border-gradient';
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -48,7 +46,7 @@ const IndexPage: React.FC<PageProps> = () => {
                   className="text-2xl px-4 md:text-4xl lg:text-6xl font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto "
                 >
                   Découvrez{' '}
-                  <span className=" bg-gradient-to-tr from-blue-400 via-pink-400 to-white text-transparent bg-clip-text">
+                  <span className="bg-gradient-to-tr from-blue-400 via-pink-400 to-white text-transparent bg-clip-text">
                     DAZLE
                   </span>
                 </motion.h1>
@@ -65,51 +63,59 @@ const IndexPage: React.FC<PageProps> = () => {
                     duration: 0.5,
                     ease: [0.4, 0.0, 0.2, 1]
                   }}
-                  className="px-4 text-[7vw] 2xl:text-[90pt] font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto z-100"
+                  className="px-4 text-[5vw] 2xl:text-[90pt] font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto z-100"
                 >
                   LA NOUVELLE ÈRE DU FREELANCING CREATIF
                 </motion.h1>
+                <div className="flex mx-auto space-x-3 mt-10 pointer-events-auto">
+                  <div className="relative inline-flex  group">
+                    <motion.div
+                      className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-tr from-blue-400 via-pink-400 to-white rounded-full blur-lg group-hover:opacity-80 group-hover:-inset-1 group-hover:duration-200"
+                    ></motion.div>
+                    <a
+                      href="#join-wait-list-form"
+                      // title="Get quote now"
+                      className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
+                      role="button"
+                    >
+                      START NOW
+                    </a>
+                  </div>
+                  <button className="bg-transparent border border-black mx-auto dark:bg-white text-xl rounded-full w-fit text-black dark:text-white px-8 py-3">
+                    LEARN MORE
+                  </button>
+                </div>
               </div>
-
-              <ImageScrollAnimation
-                image="red-ring-inflatable-shape.png"
-                className="absolute z-100 w-full w-[70vw] top-[-20vh] left-[-20vw] w-[40vw]"
-              />
             </div>
+            <ImageScrollAnimation
+              image="red-ring-inflatable-shape.png"
+              className="absolute z-100 w-full w-[70vw] top-[-20vh] left-[-20vw] w-[40vw]"
+            />
+          </div>
+          <div className="absolute flex flex-col justify-center items-center space-y-3 bottom-10 left-[50%] translate-x-[-50%] font-bold">
+            <div>Scroll to explore</div>
+            <motion.div
+              initial={{ translateY: 10 }}
+              animate={{ translateY: 0 }}
+              transition={{
+                repeat: Infinity,
+                repeatType: 'reverse',
+                duration: 0.5
+              }}
+            >
+              <ArrowDown />
+            </motion.div>
           </div>
         </BackgroundGradientAnimation>
-
-        <div className="">
-          <ProductSection />
-        </div>
       </div>
       <FeatureSection />
-      <div className="bg-neutral-900">
-        <FreelanceSection />
-      </div> 
-      <div className="h-screen flex flex-col justify-center">
-        <div className="max-w-[900px] mx-20 border p-10">
-          <div className="font-medium text-6xl">POURQUOI DAZLE ?</div>
-          <div className="text-xl font-light mt-10">
-            Dazle redéfinit les standards du freelancing avec ses valeurs
-            fondamentales. L'innovation est au cœur de leurs solutions créatives
-            et de pointe, permettant de surmonter les défis du freelancing
-            moderne. La communauté est également essentielle, offrant un
-            environnement solidaire où les membres se soutiennent mutuellement,
-            collaborent et grandissent ensemble. L'intégrité est une priorité,
-            avec une transparence et une éthique inébranlables dans toutes leurs
-            interactions. L'inclusivité est mise en avant, avec une plateforme
-            ouverte et accueillante pour tous, peu importe l'origine,
-            l'expérience ou les compétences. L'apprentissage continu est
-            encouragé, avec des ressources et des opportunités constantes pour
-            améliorer les compétences et le savoir-faire. Enfin, l'excellence
-            est recherchée, avec une quête incessante d'amélioration pour offrir
-            la meilleure expérience utilisateur possible.
-          </div>
-        </div>
-      </div>
+      <FreelanceSection />
+
       <TestimonialSection />
-      <AuroraBackground className='relative'>
+      <AuroraBackground className="relative" id='join-wait-list-form'>
+        <div className="absolute top-0 w-screen bg-gradient-to-b from-white to-transparent h-[100px]"></div>
+        <div className="absolute bottom-0 w-screen bg-gradient-to-t from-white to-transparent h-[100px]"></div>
+
         <motion.div
           initial={{ opacity: 0.0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -118,16 +124,23 @@ const IndexPage: React.FC<PageProps> = () => {
             duration: 0.8,
             ease: 'easeInOut'
           }}
-          className="relative flex flex-col gap-4 items-center justify-center px-4"
+          className="relative flex min-h-screen flex-col gap-4 items-center justify-center px-4"
         >
-          <div className="text-3xl md:text-7xl font-bold dark:text-white text-center">
-            Background lights are cool you know.
+          <div className="text-3xl md:text-7xl font-bold dark:text-white text-center sm:w-1/2">
+            Propulsez votre créativité encore plus loin.
           </div>
           <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
-            And this, is chemical burn.
+            Rejoins la Whitelist maintenant.
           </div>
+          <input
+            className="p-3 sm:w-1/4 w-full border rounded-xl focus-visible:outline-none"
+            type="email"
+            name="email"
+            placeholder="Entrez votre email"
+            id="email"
+          />
           <button className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2">
-            Debug now
+            JOIN THE WHITELIST
           </button>
         </motion.div>
       </AuroraBackground>

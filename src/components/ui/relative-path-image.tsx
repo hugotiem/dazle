@@ -29,7 +29,8 @@ export const DynamicImage = ({ src, ...props }: DynamicImageProps) => {
   `);
 
   const image = getImage(
-    imageData.image.edges.filter((e: any) => e.node.relativePath === src)[0]?.node
+    imageData.image.edges.filter((e: any) => e.node.relativePath === src)[0]
+      ?.node
   );
 
   return (image && <GatsbyImage image={image} {...props} />) || <div></div>;

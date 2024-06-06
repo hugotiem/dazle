@@ -95,7 +95,7 @@ const FreelanceSection = () => {
         >
           <ImageScrollAnimation
             transform={[500, 0]}
-             image="orange-puffy-inflatable-flower.png"
+            image="orange-puffy-inflatable-flower.png"
           />
         </motion.div>
       )
@@ -120,7 +120,6 @@ const FreelanceSection = () => {
           <ImageScrollAnimation
             transform={[500, 0]}
             image="puffy-inflatable-pastel-red-star.png"
-           
           />
         </motion.div>
       )
@@ -130,24 +129,24 @@ const FreelanceSection = () => {
   return (
     <div className="relative" ref={scrollDemoRef}>
       <div
-        className={`h-screen w-screen sticky top-0 z-50 bg-neutral overflow-hidden shadow-md transition-all duration-300 ${sections[sectionIndex]?.bgColor} z-100`}
+        className={`h-screen w-screen sticky top-0 z-50 bg-neutral overflow-hidden  transition-all duration-300 ${sections[sectionIndex]?.bgColor} z-100`}
       >
         <div className="relative overflow-hidden">
           {sections.map((e, index) => (
             <div key={e.title}> {e.icon}</div>
           ))}
 
-          <div className="relative h-screen flex flex-col container mx-auto justify-center text-neutral-900">
+          <div className="relative h-screen flex flex-col container mx-auto px-3 justify-center text-neutral-900">
             <div className="relative">
-              <div className="font-medium text-6xl">
+              <div className="font-medium lg:text-6xl text-2xl">
                 POUR LES
                 <FlipWords
-                  word={sections[sectionIndex]?.section}
-                  index={sectionIndex}
+                  word={sections[sectionIndex > -1 ? 0 : sectionIndex]?.section}
+                  index={sectionIndex > -1 ? 0 : sectionIndex}
                 />
               </div>
             </div>
-            <div className="font-light text-xl mb-10">
+            <div className="font-light lg:text-xl text-base mb-10">
               {sections[sectionIndex]?.description}
             </div>
             <div className="relative">

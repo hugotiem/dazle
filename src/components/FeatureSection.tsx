@@ -19,6 +19,7 @@ export const FeatureSection = ({ ...props }: FeatureSectionProps) => {
       title: 'Portfolios Personnalisés',
       description: 'Créez des portfolios visuellement attrayants.',
       image: 'inflatable-puffy-pastel-plant-render-1.png',
+      featureImage: 'dazle-feed.png',
       offset: ['-30vh', '-10vw']
     },
     {
@@ -27,6 +28,7 @@ export const FeatureSection = ({ ...props }: FeatureSectionProps) => {
       title: 'Outils de Collaboration',
       description: 'Intégration de chats, de partage de fichiers, etc.',
       image: 'light-pink-donut-shaped-inflatable-form-3.png',
+      featureImage: 'dazle-portefolio.png',
       offset: ['10vh', '80vw']
     },
     {
@@ -34,7 +36,7 @@ export const FeatureSection = ({ ...props }: FeatureSectionProps) => {
       ref: useRef<HTMLDivElement>(null),
       title: 'Suivi des tâches et des délais.',
       description: 'Suivi des tâches et des délais.',
-
+      featureImage: 'dazle-profile.png',
       image: 'abstract-green-knit-inflatable-shape.png',
       offset: ['100vh', '40vw']
     }
@@ -81,7 +83,7 @@ export const FeatureSection = ({ ...props }: FeatureSectionProps) => {
     <section {...props}>
       <div className="relative" ref={ref}>
         <div
-          className={`h-screen  w-screen sticky top-0 z-50 bg-neutral overflow-hidden transition-all duration-300 ${sectionIndex > 2 ? 'bg-neutral-900' : 'bg-transparent'} z-100`}
+          className={`h-screen  w-screen sticky top-0 z-50 bg-neutral overflow-hidden transition-all duration-300 z-100`}
         >
           {sections.map((e) => (
             <AnimatePresence>
@@ -125,8 +127,41 @@ export const FeatureSection = ({ ...props }: FeatureSectionProps) => {
                 }))}
               />
             </div>
-            <div className="w-1/2">
-              <GatsbyImage image={getImage(image.image)!} alt="" />
+            <div className="w-1/2 pr-10 h-screen flex flex-col justify-center">
+              <figure className="ms-auto me-20 relative z-[1] max-w-full w-[50rem] h-auto rounded-b-lg shadow-[0_2.75rem_3.5rem_-2rem_rgb(45_55_75_/_20%),_0_0_5rem_-2rem_rgb(45_55_75_/_15%)] dark:shadow-[0_2.75rem_3.5rem_-2rem_rgb(0_0_0_/_20%),_0_0_5rem_-2rem_rgb(0_0_0_/_15%)]">
+                <div className="relative flex items-center max-w-[50rem] bg-gray-800 rounded-t-lg py-2 px-24 dark:bg-neutral-700">
+                  <div className="flex space-x-1 absolute top-2/4 start-4 -translate-y-1">
+                    <span className="size-2 bg-gray-600 rounded-full dark:bg-neutral-600"></span>
+                    <span className="size-2 bg-gray-600 rounded-full dark:bg-neutral-600"></span>
+                    <span className="size-2 bg-gray-600 rounded-full dark:bg-neutral-600"></span>
+                  </div>
+                  <div className="flex justify-center items-center size-full bg-gray-700 text-[.25rem] text-gray-400 rounded-sm sm:text-[.5rem] dark:bg-neutral-600 dark:text-neutral-400">
+                    www.dazle.fr
+                  </div>
+                </div>
+
+                <div className="relative bg-white rounded-b-lg aspect-video">
+                  {sections.map(
+                    (image, index) =>
+                      index === sectionIndex && (
+                        <motion.div
+                          key={image.featureImage}
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          transition={{ duration: 0.4 }}
+                          className=" w-full h-full"
+                        >
+                          <DynamicImage
+                            src={image.featureImage}
+                            alt=""
+                          />
+                        </motion.div>
+                      )
+                  )}
+                
+                </div>
+              </figure>
             </div>
           </div>
         </div>

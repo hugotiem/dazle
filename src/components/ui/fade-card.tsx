@@ -78,17 +78,9 @@ export const FadeCard = ({
           >
             <div className="text-neutral-900 rounded-lg shadow-lg">
               <div className="flex flex-col space-y-2 ">
-                {/* <div className="">
-                  <GatsbyImage
-                    className="h-full opacity-gradient"
-                    image={image}
-                    alt=""
-                  />
-                </div> */}
-
                 <div className="p-4 px-8 pb-8">
-                  <h1 className="font-medium text-xl">{title}</h1>
-                  <p className="text-lg font-light">{description}</p>
+                  <h1 className="font-medium lg:text-xl text-lg">{title}</h1>
+                  <p className="lg:text-lg text-sm font-light">{description}</p>
                 </div>
               </div>
             </div>
