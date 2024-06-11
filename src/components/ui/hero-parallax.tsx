@@ -9,6 +9,8 @@ import {
 } from 'framer-motion';
 import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
+import { DynamicImage } from './relative-path-image';
+import { Star } from 'lucide-react';
 
 export const HeroParallax = ({
   products
@@ -109,7 +111,10 @@ export const Header = () => {
         <br /> NOS UTILISATEURS
       </h1>
       <p className="max-w-2xl text-base md:text-xl mt-8 dark:text-neutral-200">
-        Découvrez comment Dazle transforme les parcours professionnels de freelances et d'entreprises. Leurs témoignages inspirants révèlent comment notre plateforme facilite des collaborations exceptionnelles et des succès éclatants.
+        Découvrez comment Dazle transforme les parcours professionnels de
+        freelances et d'entreprises. Leurs témoignages inspirants révèlent
+        comment notre plateforme facilite des collaborations exceptionnelles et
+        des succès éclatants.
       </p>
     </div>
   );
@@ -135,18 +140,43 @@ export const ProductCard = ({
         y: -20
       }}
       key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0"
+      className="group/product h-96 w-[30rem] relative flex-shrink-0 overflow-hidden"
     >
-      <Link to={product.link} className="block group-hover/product:shadow-2xl ">
-        <img
-          src={product.thumbnail}
-          height={600}
-          width={600}
-          className="object-cover object-left-top absolute h-full w-full inset-0"
-          alt={product.title}
-        />
+      <Link
+        to={product.link}
+        className="block h-full shadow-2xl p-5"
+      >
+        <div className="flex space-x-5">
+          <div className="aspect-square h-20 bg-black rounded-full overflow-hidden">
+            <DynamicImage
+              src="light-pink-donut-shaped-inflatable-form-3.png"
+              alt=""
+            />
+          </div>
+          <div>
+            <div className="text-xl font-medium">Name Surename</div>
+            <div className="text-base font-light">@usename</div>
+            <div className="flex">
+              {[0, 0, 0, 0, 1].map((e) => (
+                <Star />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="h-full flex flex-col mt-10">
+          <p className="text-sm italic">
+            "J'ai récemment utilisé Dazle pour trouver des
+            freelances et je suis très satisfait ! La plateforme est intuitive
+            et facile à naviguer. Les profils des freelances sont détaillés et
+            les évaluations des clients précédents m'ont aidé à faire le bon
+            choix. Les outils de gestion de projet intégrés simplifient
+            grandement la communication et le suivi des tâches. Je recommande
+            vivement cette plateforme à quiconque cherche des talents qualifiés
+            et un service fiable."
+          </p>
+        </div>
       </Link>
-      <div className="absolute inset-0 h-full w-full opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
+      <div className="absolute inset-0 h-full w-full transition-all opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
       <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
         {product.title}
       </h2>

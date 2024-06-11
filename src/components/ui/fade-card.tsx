@@ -60,6 +60,8 @@ export const FadeCard = ({
   //   }
   // }, [isInView]);
 
+  console.log(hide)
+
   return (
     <div className="relative">
       <AnimatePresence mode="wait">

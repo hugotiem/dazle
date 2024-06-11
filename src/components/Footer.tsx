@@ -2,8 +2,8 @@ import React from 'react';
 
 export const Footer = () => {
   return (
-    <footer className="flex justify-between container mx-auto px-16 py-14 font-light w-screen items-end">
-      <div className="flex space-x-20">
+    <footer className="sm:flex space-y-10 justify-between container mx-auto sm:px-16 px-5 py-14 font-light w-screen items-end">
+      <div className="sm:flex space-y-10 sm:space-x-20">
         <ul className="space-y-2">
           <li>Contact</li>
           <li>À propos</li>
@@ -11,9 +11,10 @@ export const Footer = () => {
         <ul className="space-y-2">
           <li>Termes et Conditions</li>
           <li>Politique de Confidentialité</li>
+          <li>Mentions légales</li>
         </ul>
       </div>
-      <div className='flex space-x-10'>
+      <div className="flex space-x-10">
         <a href="https://x.com/littplus?s=21" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"

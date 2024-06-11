@@ -5,15 +5,14 @@ import { Layout } from '../components/Layout';
 import { Navbar } from '../components/Navbar';
 import { motion, useScroll } from 'framer-motion';
 import { ImageScrollAnimation } from '../components/ui/image-scroll-animation';
-import { ProductSection } from '../components/ProductSection';
 import { Footer } from '../components/Footer';
 import { FeatureSection } from '../components/FeatureSection';
-import FreelanceSection from '../components/FreelanceSection';
 import { BackgroundGradientAnimation } from '../components/ui/background-gradient-animation';
 import { TestimonialSection } from '../components/TestimonialSection';
 import { AuroraBackground } from '../components/ui/aurora-background';
 import { ArrowDown } from 'lucide-react';
-import { HoverBorderGradient } from '../components/ui/hover-border-gradient';
+import { ActionButton } from '../components/ActionButton';
+import { FreelanceSection } from '../components/FreelanceSection';
 
 const IndexPage: React.FC<PageProps> = () => {
   return (
@@ -63,24 +62,18 @@ const IndexPage: React.FC<PageProps> = () => {
                     duration: 0.5,
                     ease: [0.4, 0.0, 0.2, 1]
                   }}
-                  className="px-4 text-[5vw] 2xl:text-[90pt] font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto z-100"
+                  className="px-4 text-3xl sm:text-[5vw] 2xl:text-[90pt] font-light text-neutral-900 dark:text-white max-w-4xl leading-relaxed lg:leading-snug text-center mx-auto z-100"
                 >
-                  LA NOUVELLE ÈRE DU FREELANCING CREATIF
+                  LA NOUVELLE ÈRE DU{' '}
+                  <span className="bg-neutral-900 px-1 rounded">
+                    <span className="before:bg-neutral-900 bg-gradient-to-r from-pink-300 via-purple-300 font-medium to-blue-300 text-transparent bg-clip-text">
+                      FREELANCING
+                    </span>
+                  </span>{' '}
+                  CREATIF
                 </motion.h1>
                 <div className="flex mx-auto space-x-3 mt-10 pointer-events-auto">
-                  <div className="relative inline-flex  group">
-                    <motion.div
-                      className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-tr from-blue-400 via-pink-400 to-white rounded-full blur-lg group-hover:opacity-80 group-hover:-inset-1 group-hover:duration-200"
-                    ></motion.div>
-                    <a
-                      href="#join-wait-list-form"
-                      // title="Get quote now"
-                      className="relative inline-flex items-center justify-center px-8 py-4 text-lg font-bold text-white transition-all duration-200 bg-gray-900 font-pj rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900"
-                      role="button"
-                    >
-                      START NOW
-                    </a>
-                  </div>
+                  <ActionButton />
                   <button className="bg-transparent border border-black mx-auto dark:bg-white text-xl rounded-full w-fit text-black dark:text-white px-8 py-3">
                     LEARN MORE
                   </button>
@@ -108,11 +101,39 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </BackgroundGradientAnimation>
       </div>
-      <FeatureSection />
+      <div className="space-y-10">
+        <FeatureSection
+          reversed={false}
+          items={[
+            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
+            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
+            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.'
+          ]}
+        />
+        <FeatureSection
+          reversed
+          items={[
+            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
+            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
+            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.'
+          ]}
+        />
+        <FeatureSection
+          reversed={false}
+          items={[
+            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
+            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
+            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.'
+          ]}
+        />
+      </div>
+      <div className="w-[75%] h-[1px] bg-neutral-200 mx-auto my-20"></div>
       <FreelanceSection />
-
+      <div className="w-[75%] h-[1px] bg-neutral-200 mx-auto my-20"></div>
+      <div className="absolute top-0 bg-gradient-to-b from-white to-transparent h-[100px]"></div>
       <TestimonialSection />
-      <AuroraBackground className="relative" id='join-wait-list-form'>
+
+      <AuroraBackground className="relative" id="join-wait-list-form">
         <div className="absolute top-0 w-screen bg-gradient-to-b from-white to-transparent h-[100px]"></div>
         <div className="absolute bottom-0 w-screen bg-gradient-to-t from-white to-transparent h-[100px]"></div>
 
@@ -132,13 +153,41 @@ const IndexPage: React.FC<PageProps> = () => {
           <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
             Rejoins la Whitelist maintenant.
           </div>
-          <input
-            className="p-3 sm:w-1/4 w-full border rounded-xl focus-visible:outline-none"
-            type="email"
-            name="email"
-            placeholder="Entrez votre email"
-            id="email"
-          />
+          <div className="lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex flex-col space-y-4">
+            <input
+              className="p-3 border rounded-xl focus-visible:outline-none"
+              type="email"
+              name="email"
+              placeholder="Entrez votre email"
+              id="email"
+            />
+            <select
+              name="pets"
+              id="pet-select"
+              className="p-3 w-full border rounded-xl focus-visible:outline-none cursor-pointer"
+              style={{
+                WebkitAppearance: 'none'
+              }}
+            >
+              <option value="">--Please choose an option--</option>
+              <option value="graphiste">Graphiste</option>
+              <option value="designer">Designer UX/UI</option>
+              <option value="illustrateur">Illustrateur</option>
+              <option value="photographe">Photographe</option>
+              <option value="video-editeur">Vidéo-éditeur</option>
+              <option value="animateur">Animateur 2D/3D</option>
+              <option value="da">Directeur Artistique</option>
+              <option value="musicien">Musicien/Compositeur</option>
+            </select>
+            <input
+              className="p-3 w-full border rounded-xl focus-visible:outline-none"
+              type="tel"
+              name="tel"
+              placeholder="Entrez votre téléphone (optionnel)"
+              id="tel"
+            />
+          </div>
+
           <button className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2">
             JOIN THE WHITELIST
           </button>
