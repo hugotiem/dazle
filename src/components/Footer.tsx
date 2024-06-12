@@ -15,7 +15,7 @@ export const Footer = () => {
         </ul>
       </div>
       <div className="flex space-x-10">
-        <a href="https://x.com/littplus?s=21" target="_blank">
+        <a href="#" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
@@ -29,7 +29,7 @@ export const Footer = () => {
             />
           </svg>
         </a>
-        <a href="https://instagram.com/littplus" target="_blank">
+        <a href="#" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="32"
@@ -55,7 +55,7 @@ export const Footer = () => {
             </defs>
           </svg>
         </a>
-        <a href="https://www.linkedin.com/company/littplus/" target="_blank">
+        <a href="#" target="_blank">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="33"

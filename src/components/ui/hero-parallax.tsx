@@ -7,18 +7,19 @@ import {
   useSpring,
   MotionValue
 } from 'framer-motion';
-import { StaticImage } from 'gatsby-plugin-image';
 import { Link } from 'gatsby';
 import { DynamicImage } from './relative-path-image';
-import { Star } from 'lucide-react';
+import { FaRegStar, FaStar } from 'react-icons/fa';
 
 export const HeroParallax = ({
   products
 }: {
   products: {
-    title: string;
-    link: string;
     thumbnail: string;
+    name: string;
+    username: string;
+    comment: string;
+    rate: number;
   }[];
 }) => {
   const firstRow = products.slice(0, 5);
@@ -59,7 +60,7 @@ export const HeroParallax = ({
   return (
     <div
       ref={ref}
-      className="h-[300vh] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
+      className="h-[150em] py-40 overflow-hidden  antialiased relative flex flex-col self-auto [perspective:1000px] [transform-style:preserve-3d]"
     >
       <Header />
       <motion.div
@@ -76,7 +77,7 @@ export const HeroParallax = ({
             <ProductCard
               product={product}
               translate={translateX}
-              key={product.title}
+              key={product.username}
             />
           ))}
         </motion.div>
@@ -85,7 +86,7 @@ export const HeroParallax = ({
             <ProductCard
               product={product}
               translate={translateXReverse}
-              key={product.title}
+              key={product.username}
             />
           ))}
         </motion.div>
@@ -94,7 +95,7 @@ export const HeroParallax = ({
             <ProductCard
               product={product}
               translate={translateX}
-              key={product.title}
+              key={product.username}
             />
           ))}
         </motion.div>
@@ -125,9 +126,11 @@ export const ProductCard = ({
   translate
 }: {
   product: {
-    title: string;
-    link: string;
     thumbnail: string;
+    name: string;
+    username: string;
+    comment: string;
+    rate: number;
   };
   translate: MotionValue<number>;
 }) => {
@@ -139,47 +142,40 @@ export const ProductCard = ({
       whileHover={{
         y: -20
       }}
-      key={product.title}
-      className="group/product h-96 w-[30rem] relative flex-shrink-0 overflow-hidden"
+      key={product.name}
+      className="group/product h-72 w-[30rem] relative flex-shrink-0 overflow-hidden"
     >
-      <Link
-        to={product.link}
-        className="block h-full shadow-2xl p-5"
-      >
+      <div className="block h-full shadow-2xl p-5">
         <div className="flex space-x-5">
           <div className="aspect-square h-20 bg-black rounded-full overflow-hidden">
-            <DynamicImage
+            <img src={product.thumbnail} alt="" />
+            {/* <DynamicImage
               src="light-pink-donut-shaped-inflatable-form-3.png"
               alt=""
-            />
+            /> */}
           </div>
           <div>
-            <div className="text-xl font-medium">Name Surename</div>
-            <div className="text-base font-light">@usename</div>
-            <div className="flex">
-              {[0, 0, 0, 0, 1].map((e) => (
-                <Star />
-              ))}
+            <div className="text-xl font-medium">{product.name}</div>
+            <div className="text-base font-light">{product.username}</div>
+            <div className="flex space-x-1">
+              {[0, 0, 0, 0, 0].map(
+                (e, index) => {
+                  const full = index < product.rate;
+                  if (!full) return <FaRegStar color="grey" />;
+                  return <FaStar color="orange" />;
+                }
+
+                // <Star />
+              )}
             </div>
           </div>
         </div>
         <div className="h-full flex flex-col mt-10">
-          <p className="text-sm italic">
-            "J'ai récemment utilisé Dazle pour trouver des
-            freelances et je suis très satisfait ! La plateforme est intuitive
-            et facile à naviguer. Les profils des freelances sont détaillés et
-            les évaluations des clients précédents m'ont aidé à faire le bon
-            choix. Les outils de gestion de projet intégrés simplifient
-            grandement la communication et le suivi des tâches. Je recommande
-            vivement cette plateforme à quiconque cherche des talents qualifiés
-            et un service fiable."
-          </p>
+          <p className="text-sm italic">{product.comment}</p>
         </div>
-      </Link>
-      <div className="absolute inset-0 h-full w-full transition-all opacity-0 group-hover/product:opacity-80 bg-black pointer-events-none"></div>
-      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white">
-        {product.title}
-      </h2>
+      </div>
+      <div className="absolute inset-0 h-full w-full transition-all opacity-0 group-hover/product:opacity-[.01] bg-black pointer-events-none"></div>
+      <h2 className="absolute bottom-4 left-4 opacity-0 group-hover/product:opacity-100 text-white"></h2>
     </motion.div>
   );
 };

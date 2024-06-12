@@ -2,6 +2,10 @@
 @tailwind components;
 @tailwind utilities;
 
+html {
+  scroll-behavior: smooth;
+}
+
 .bg-custom-gradient {
   background: linear-gradient(135deg, rgba(2, 0, 36, 1) 0%, rgba(9, 9, 121, 1) 35%, rgba(0, 212, 255, 1) 100%);
 }
@@ -20,4 +24,42 @@
   height: 100%;
   background: linear-gradient(to top, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
   pointer-events: none; /* This ensures that the gradient does not interfere with clicks */
+}
+
+@keyframes slideAnimation {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+.looper {
+  width: 100%;
+  overflow: hidden;
+}
+
+.looper__innerList {
+  display: flex;
+  justify-content: center;
+  width: fit-content;
+}
+
+.looper__listInstance {
+  display: flex;
+  width: max-content;
+
+  animation: slideAnimation linear infinite;
+}
+
+.looper__innerList[data-animate="true"] .looper__listInstance {
+  animation: slideAnimation linear infinite;   
+}
+
+.looper__listInstance {
+  display: flex;
+  width: max-content;
+
+  animation: none;
 }

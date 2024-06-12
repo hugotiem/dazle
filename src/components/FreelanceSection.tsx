@@ -65,13 +65,18 @@ interface FreelanceSectionProps extends HTMLAttributes<HTMLElement> {}
 
 export const FreelanceSection = ({ ...props }: FreelanceSectionProps) => {
   return (
-    <section className="space-y-32 relative overflow-hidden">
+    <section className="relative overflow-x-clip">
+      <div className="absolute top-0 ">
+        <BackgroundGradientAnimation containerClassName="opacity-50"></BackgroundGradientAnimation>
+      </div>
+
+      <div className='relative z-50 space-y-32'>
         {sections.map((e) => (
           <div className="flex flex-col items-center">
             <div className="text-3xl font-bold my-5"> {e.title} </div>
             <div className="sm:flex sm:mx-0 mx-5 sm:space-y-0 space-y-5 justify-center sm:space-x-5">
               {e.items.map((item) => (
-                <div className="max-w-[400px] rounded-t-md rounded-b-xl overflow-clip border border-neutral-100 bg-slate-100">
+                <div className="max-w-[400px] rounded-t-md rounded-b-xl overflow-clip border border-neutral-100 bg-slate-100/50">
                   <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 h-2"></div>
                   <div className="p-5 space-y-6">
                     <div>ICON</div>
@@ -86,7 +91,7 @@ export const FreelanceSection = ({ ...props }: FreelanceSectionProps) => {
             </div>
           </div>
         ))}
-      <BackgroundGradientAnimation containerClassName="absolute top-0 opacity-50"></BackgroundGradientAnimation>
+      </div>
     </section>
   );
 };

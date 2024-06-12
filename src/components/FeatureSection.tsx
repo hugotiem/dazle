@@ -9,25 +9,33 @@ import { BackgroundGradientAnimation } from './ui/background-gradient-animation'
 
 interface FeatureSectionProps extends HTMLAttributes<HTMLElement> {
   items: string[];
+  image: string;
   reversed: boolean;
+  tag: string;
+  title: string;
 }
 
 export const FeatureSection = ({
   items,
   reversed,
+  image,
+  tag,
+  title,
   ...props
 }: FeatureSectionProps) => {
   return (
-    <section className='relative overflow-hidden'>
-      
+    <section className="relative overflow-x-clip">
+      <div className="absolute top-0 z-0">
+        <BackgroundGradientAnimation containerClassName="opacity-50"></BackgroundGradientAnimation>
+      </div>
       <div
         className={cn(
-          'md:flex md:mx-20 items-center mx-10',
+          'flex flex-col-reverse md:flex-row md:mx-20 space-y-5 items-center mx-10 relative z-50',
           reversed ? 'md:flex-row-reverse' : ''
         )}
       >
         <div className="flex flex-1 flex-col items-start space-y-7">
-          <div className="font-bold">CENTRALIZE</div>
+          <div className="font-bold">{tag.toUpperCase()}</div>
           <div className="font-bold text-2xl">
             Consolidate and organize customer feedback in hours not days
           </div>
@@ -41,9 +49,9 @@ export const FeatureSection = ({
               </div>
             ))}
           </div>
-          <ActionButton />
+          <ActionButton className="event-pointer-auto" />
         </div>
-        <div className='w-20'></div>
+        <div className="w-20"></div>
         <div className="flex-1">
           <div className="aspect-square mt-5 bg-gradient-to-tr h-full w-full from-blue-400 via-pink-400 to-white rounded-3xl overflow-hidden lg:scale-[.8] flex flex-col justify-center">
             <div className="translate-x-[10%] ">
@@ -68,7 +76,7 @@ export const FeatureSection = ({
                       transition={{ duration: 0.4 }}
                       className=" w-full h-full"
                     >
-                      <DynamicImage src={'dazle-feed.png'} alt="" />
+                      <DynamicImage src={image} alt="" />
                     </motion.div>
                   </div>
                 </figure>
@@ -77,7 +85,6 @@ export const FeatureSection = ({
           </div>
         </div>
       </div>
-      <BackgroundGradientAnimation containerClassName='absolute top-0 opacity-50'></BackgroundGradientAnimation>  
     </section>
   );
 };
