@@ -14,6 +14,13 @@ import { ArrowDown } from 'lucide-react';
 import { ActionButton } from '../components/ActionButton';
 import { FreelanceSection } from '../components/FreelanceSection';
 import InfiniteLooper from '../components/ui/infinit-looper';
+import { AdobeSvg } from '../components/svg/adobe.svg';
+import { SpotifySvg } from '../components/svg/spotify.svg';
+import { FigmaSvg } from '../components/svg/figma.svg';
+import { FramerSvg } from '../components/svg/framer.svg';
+import { WebflowSvg } from '../components/svg/webflow.svg';
+import { NotionSvg } from '../components/svg/notion.svg';
+import { GoogleSvg } from '../components/svg/google.svg';
 
 const IndexPage: React.FC<PageProps> = () => {
   const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -110,46 +117,53 @@ const IndexPage: React.FC<PageProps> = () => {
           </div>
         </BackgroundGradientAnimation>
       </div>
-      <div>
-        <InfiniteLooper direction='left' speed={4}>
-          <div className="contentBlock contentBlock--one">
-            Place the stuff you want to loop
-          </div>
-          <div className="contentBlock contentBlock--one">right here</div>
+      <div className="flex flex-col items-center my-10 text-sm font-bold">
+        <div>ILS S'INTERESSENT A NOUS</div>
+        <InfiniteLooper direction="left" speed={15}>
+          <AdobeSvg />
+          <SpotifySvg />
+          <FigmaSvg />
+          <FramerSvg />
+          <WebflowSvg />
+          <NotionSvg />
+          <GoogleSvg />
         </InfiniteLooper>
       </div>
       <div className="space-y-10" ref={scrollRef}>
         <FeatureSection
           tag="Feed"
-          title="Consolidate and organize customer feedback in hours not days"
+          title="Découvrez et Connectez-vous : Transformez Votre Feed Dazle en Source d'Inspiration et d'Opportunités"
           reversed={false}
           image="dazle-feed.png"
           items={[
-            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
-            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
-            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.'
+            "Explorez votre feed pour découvrir, vous inspirer et interagir. C'est un espace où les idées et les opportunités se révèlent.",
+            "Personnalisez votre feed pour refléter vos intérêts et aspirations. Suivez des projets et créateurs en accord avec votre vision.",
+            "Restez connecté avec la communauté. Commentez, partagez et engagez-vous avec le travail des autres.",
+            "Restez à jour avec les nouvelles de l'industrie et les succès de vos collègues. Nourrissez votre créativité et trouvez l'inspiration quotidienne.",
           ]}
         />
         <FeatureSection
-          tag="Pofil"
+          tag="Profil"
           image="dazle-profile.png"
-          title="Consolidate and organize customer feedback in hours not days"
+          title="Montrez Votre Unicité : Transformez Votre Profil Dazle en Vitrine Professionnelle"
           reversed
           items={[
-            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
-            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
-            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.'
+            "Votre profil sur Dazle est plus qu'une page : c'est l'expression de votre identité professionnelle, votre vision et votre parcours.",
+            "Présentez-vous de manière authentique. Ajoutez une photo, une biographie, et détaillez vos compétences et expériences. Chaque élément compose votre histoire unique.",
+            'Votre profil est votre vitrine personnelle. Exprimez vos passions, ambitions et réalisations avec des descriptions captivantes. Montrez ce que vous faites et pourquoi.',
+            'Soyez vous-même pour attirer les bonnes connexions et collaborations. Votre profil sur Dazle est votre espace pour briller et vous démarquer.'
           ]}
         />
         <FeatureSection
           tag="Portefolio"
-          title="Consolidate and organize customer feedback in hours not days"
+          title="Montrez Votre Talent : Transformez Votre Portfolio Dazle en Galerie Vivante"
           reversed={false}
           image="dazle-portefolio.png"
           items={[
-            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
-            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.',
-            ' Centralize all customer feedback in a matter of minutes - social media, sales calls, support tickets, community forums.'
+            "Votre portfolio est plus qu'une collection de travaux; c'est une galerie vivante illustrant votre parcours et vos compétences. Ajoutez des projets marquants pour créer un tableau authentique de vos réalisations.",
+            "Chaque détail compte : descriptions précises et images percutantes capturant l'essence de votre travail. Partagez ce qui vous motive et passionne.",
+            "Un portfolio authentique attire l'attention et les opportunités. Vos futurs clients veulent découvrir la personne derrière les œuvres. Partagez votre regard et votre approche pour créer des connexions durables.",
+            "C'est votre espace pour briller. Soyez authentique, unique, et laissez votre portfolio raconter votre histoire de manière mémorable."
           ]}
         />
       </div>

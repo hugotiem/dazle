@@ -50,12 +50,12 @@ export default function InfiniteLooper({
   }, []);
 
   return (
-    <div className="looper" ref={outerRef}>
-      <div className="looper__innerList" ref={innerRef}>
+    <div className="looper my-10" ref={outerRef}>
+      <div className="looper__innerList space-x-10" ref={innerRef}>
         {[...Array(looperInstances)].map((_, ind) => (
           <div
             key={ind}
-            className="looper__listInstance"
+            className="looper__listInstance space-x-10"
             style={{
               animationDuration: `${speed}s`,
               animationDirection: direction === 'right' ? 'reverse' : 'normal'

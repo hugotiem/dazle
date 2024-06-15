@@ -1,14 +1,15 @@
 import React, { HTMLAttributes, useEffect, useRef, useState } from 'react';
 import { FadeCard } from './ui/fade-card';
-import { useStaticQuery, graphql } from 'gatsby';
-import { GatsbyImage, getImage } from 'gatsby-plugin-image';
-import { cn } from '../utils/cn';
-import { useInView } from 'react-intersection-observer';
-import { animated, useSpring } from 'react-spring';
-import { motion, useAnimation } from 'framer-motion';
-import { ImageScrollAnimation } from './ui/image-scroll-animation';
 import { FlipWords } from './ui/flip-words';
 import { BackgroundGradientAnimation } from './ui/background-gradient-animation';
+import {
+  GalleryVerticalEnd,
+  GraduationCap,
+  PencilRuler,
+  Sparkles
+} from 'lucide-react';
+import { LiaUsersSolid } from 'react-icons/lia';
+import { GiProcessor } from 'react-icons/gi';
 
 const sections = [
   {
@@ -19,19 +20,22 @@ const sections = [
     section: 'FREELANCES',
     items: [
       {
-        title: 'Exposition Maximale',
+        logo: <GraduationCap />,
+        title: 'Accédez à des Opportunités Exclusives',
         description:
-          " Créez un portfolio en ligne époustouflant et mettez en avant votre style unique. Attirez l'attention des meilleurs clients et faites-vous remarquer."
+          'Accédez à des projets exclusifs adaptés à vos compétences et intérêts. Trouvez des missions qui vous passionnent et développez votre carrière freelance avec des clients de qualité.'
       },
       {
-        title: 'Exposition Maximale',
+        logo: <LiaUsersSolid size={35} />,
+        title: 'Rejoignez une Communauté de Créatifs',
         description:
-          " Créez un portfolio en ligne époustouflant et mettez en avant votre style unique. Attirez l'attention des meilleurs clients et faites-vous remarquer."
+          "Rejoignez une communauté dynamique de freelances et de créatifs. Échangez, collaborez et grandissez ensemble dans un environnement de soutien et d'inspiration."
       },
       {
-        title: 'Exposition Maximale',
+        logo: <GalleryVerticalEnd />,
+        title: 'Créez un Portfolio à votre image',
         description:
-          " Créez un portfolio en ligne époustouflant et mettez en avant votre style unique. Attirez l'attention des meilleurs clients et faites-vous remarquer."
+          "Créez un portfolio en ligne époustouflant et mettez en avant votre style unique. Attirez l'attention des meilleurs clients et faites-vous remarquer."
       }
     ]
   },
@@ -43,19 +47,23 @@ const sections = [
     section: 'ENTREPRISES',
     items: [
       {
-        title: 'Exposition Maximale',
+        logo: <PencilRuler />,
+        title: 'Découvrez des Talents Exceptionnels',
         description:
-          " Créez un portfolio en ligne époustouflant et mettez en avant votre style unique. Attirez l'attention des meilleurs clients et faites-vous remarquer."
+          'Découvrez et engagez des freelances hautement qualifiés pour vos projets. Accédez à un vivier de talents diversifiés et sélectionnez les meilleurs profils pour répondre à vos besoins spécifiques.'
       },
       {
-        title: 'Exposition Maximale',
+        logo: <Sparkles />,
+        title:
+          "Utilisez un Algorithme Avancé via l'IA pour Trouver le Talent Idéal",
         description:
-          " Créez un portfolio en ligne époustouflant et mettez en avant votre style unique. Attirez l'attention des meilleurs clients et faites-vous remarquer."
+          "Profitez de notre algorithme avancé basé sur l'IA pour rechercher des freelances par domaine de compétence, style et bien plus. Assurez-vous de trouver le talent parfait pour vos projets spécifiques."
       },
       {
-        title: 'Exposition Maximale',
+        logo: <GiProcessor size={30} />,
+        title: 'Comprenez Mieux le Processus Créatif',
         description:
-          " Créez un portfolio en ligne époustouflant et mettez en avant votre style unique. Attirez l'attention des meilleurs clients et faites-vous remarquer."
+          'En voyant le profil détaillé du freelance, vous savez qui vous avez en face de vous. Vous comprenez mieux comment il construit ses idées. Cela vous permet de mieux comprendre son processus créatif, de faire des sélections plus éclairées.'
       }
     ]
   }
@@ -70,16 +78,19 @@ export const FreelanceSection = ({ ...props }: FreelanceSectionProps) => {
         <BackgroundGradientAnimation containerClassName="opacity-50"></BackgroundGradientAnimation>
       </div>
 
-      <div className='relative z-50 space-y-32'>
-        {sections.map((e) => (
-          <div className="flex flex-col items-center">
+      <div className="relative z-50 space-y-32">
+        {sections.map((e, index) => (
+          <div key={index} className="flex flex-col items-center">
             <div className="text-3xl font-bold my-5"> {e.title} </div>
             <div className="sm:flex sm:mx-0 mx-5 sm:space-y-0 space-y-5 justify-center sm:space-x-5">
-              {e.items.map((item) => (
-                <div className="max-w-[400px] rounded-t-md rounded-b-xl overflow-clip border border-neutral-100 bg-slate-100/50">
+              {e.items.map((item, index) => (
+                <div
+                  key={index}
+                  className="max-w-[400px] rounded-t-md rounded-b-xl overflow-clip border border-neutral-100 bg-slate-100/50"
+                >
                   <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 h-2"></div>
                   <div className="p-5 space-y-6">
-                    <div>ICON</div>
+                    <div>{item.logo}</div>
                     <div className="text-2xl font-medium"> {item.title} </div>
                     <div className="font-light text-lg">
                       {' '}

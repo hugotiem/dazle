@@ -37,11 +37,11 @@ export const FeatureSection = ({
         <div className="flex flex-1 flex-col items-start space-y-7">
           <div className="font-bold">{tag.toUpperCase()}</div>
           <div className="font-bold text-2xl">
-            Consolidate and organize customer feedback in hours not days
+            {title}
           </div>
           <div className="space-y-3">
             {items.map((e) => (
-              <div className="flex space-x-4">
+              <div key={items.indexOf(e)} className="flex space-x-4">
                 <div className="flex-none mt-2 h-3 w-3 rounded-full bg-neutral-900"></div>
                 <div className="flex-1 text-xl text-neutral-500 font-medium">
                   {e}
