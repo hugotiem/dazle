@@ -21,6 +21,7 @@ import { FramerSvg } from '../components/svg/framer.svg';
 import { WebflowSvg } from '../components/svg/webflow.svg';
 import { NotionSvg } from '../components/svg/notion.svg';
 import { GoogleSvg } from '../components/svg/google.svg';
+import { TikTokSvg } from '../components/svg/tiktok.svg';
 
 const IndexPage: React.FC<PageProps> = () => {
   const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -127,6 +128,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <WebflowSvg />
           <NotionSvg />
           <GoogleSvg />
+          <TikTokSvg />
         </InfiniteLooper>
       </div>
       <div className="space-y-10" ref={scrollRef}>
@@ -137,9 +139,9 @@ const IndexPage: React.FC<PageProps> = () => {
           image="dazle-feed.png"
           items={[
             "Explorez votre feed pour découvrir, vous inspirer et interagir. C'est un espace où les idées et les opportunités se révèlent.",
-            "Personnalisez votre feed pour refléter vos intérêts et aspirations. Suivez des projets et créateurs en accord avec votre vision.",
-            "Restez connecté avec la communauté. Commentez, partagez et engagez-vous avec le travail des autres.",
-            "Restez à jour avec les nouvelles de l'industrie et les succès de vos collègues. Nourrissez votre créativité et trouvez l'inspiration quotidienne.",
+            'Personnalisez votre feed pour refléter vos intérêts et aspirations. Suivez des projets et créateurs en accord avec votre vision.',
+            'Restez connecté avec la communauté. Commentez, partagez et engagez-vous avec le travail des autres.',
+            "Restez à jour avec les nouvelles de l'industrie et les succès de vos collègues. Nourrissez votre créativité et trouvez l'inspiration quotidienne."
           ]}
         />
         <FeatureSection
@@ -149,7 +151,7 @@ const IndexPage: React.FC<PageProps> = () => {
           reversed
           items={[
             "Votre profil sur Dazle est plus qu'une page : c'est l'expression de votre identité professionnelle, votre vision et votre parcours.",
-            "Présentez-vous de manière authentique. Ajoutez une photo, une biographie, et détaillez vos compétences et expériences. Chaque élément compose votre histoire unique.",
+            'Présentez-vous de manière authentique. Ajoutez une photo, une biographie, et détaillez vos compétences et expériences. Chaque élément compose votre histoire unique.',
             'Votre profil est votre vitrine personnelle. Exprimez vos passions, ambitions et réalisations avec des descriptions captivantes. Montrez ce que vous faites et pourquoi.',
             'Soyez vous-même pour attirer les bonnes connexions et collaborations. Votre profil sur Dazle est votre espace pour briller et vous démarquer.'
           ]}
