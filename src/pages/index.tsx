@@ -134,38 +134,38 @@ const IndexPage: React.FC<PageProps> = () => {
       <div className="space-y-10" ref={scrollRef}>
         <FeatureSection
           tag="Feed"
-          title="Découvrez et Connectez-vous : Transformez Votre Feed Dazle en Source d'Inspiration et d'Opportunités"
+          title="Découvrez et connectez-vous : transformez votre feed Dazle en source d'inspiration et d'opportunités"
           reversed={false}
           image="dazle-feed.png"
           items={[
-            "Explorez votre feed pour découvrir, vous inspirer et interagir. C'est un espace où les idées et les opportunités se révèlent.",
-            'Personnalisez votre feed pour refléter vos intérêts et aspirations. Suivez des projets et créateurs en accord avec votre vision.',
+            "Explorez votre feed pour découvrir, vous inspirer et interagir. C'est un espace où les idées et les <strong>opportunités</strong> se révèlent.",
+            '<strong>Personnalisez</strong> votre feed pour refléter vos intérêts et aspirations. Suivez des projets et créateurs en accord avec votre <strong>vision</strong>.',
             'Restez connecté avec la communauté. Commentez, partagez et engagez-vous avec le travail des autres.',
-            "Restez à jour avec les nouvelles de l'industrie et les succès de vos collègues. Nourrissez votre créativité et trouvez l'inspiration quotidienne."
+            "<strong>Restez à jour</strong> avec les nouvelles de l'industrie et les succès de vos collègues. Nourrissez votre créativité et trouvez <strong>l'inspiration</strong> quotidienne."
           ]}
         />
         <FeatureSection
           tag="Profil"
           image="dazle-profile.png"
-          title="Montrez Votre Unicité : Transformez Votre Profil Dazle en Vitrine Professionnelle"
+          title="Montrez votre unicité : transformez votre profil Dazle en vitrine professionnelle"
           reversed
           items={[
-            "Votre profil sur Dazle est plus qu'une page : c'est l'expression de votre identité professionnelle, votre vision et votre parcours.",
-            'Présentez-vous de manière authentique. Ajoutez une photo, une biographie, et détaillez vos compétences et expériences. Chaque élément compose votre histoire unique.',
-            'Votre profil est votre vitrine personnelle. Exprimez vos passions, ambitions et réalisations avec des descriptions captivantes. Montrez ce que vous faites et pourquoi.',
-            'Soyez vous-même pour attirer les bonnes connexions et collaborations. Votre profil sur Dazle est votre espace pour briller et vous démarquer.'
+            "Votre profil sur Dazle est plus qu'une page : c'est l'expression de <strong>votre identité</strong> professionnelle, votre vision et votre parcours.",
+            'Présentez-vous de manière <strong>authentique</strong>. Ajoutez une photo, une biographie, et détaillez vos compétences et expériences. Chaque élément compose votre histoire unique.',
+            'Votre profil est votre <strong>vitrine</strong> personnelle. Exprimez vos passions, ambitions et réalisations avec des descriptions captivantes. Montrez ce que vous faites et pourquoi.',
+            '<strong>Soyez vous-même</strong> pour attirer les bonnes connexions et collaborations. Votre profil sur Dazle est votre espace pour briller et vous démarquer.'
           ]}
         />
         <FeatureSection
           tag="Portefolio"
-          title="Montrez Votre Talent : Transformez Votre Portfolio Dazle en Galerie Vivante"
+          title="Montrez votre talent : transformez votre portfolio Dazle en galerie vivante"
           reversed={false}
           image="dazle-portefolio.png"
           items={[
-            "Votre portfolio est plus qu'une collection de travaux; c'est une galerie vivante illustrant votre parcours et vos compétences. Ajoutez des projets marquants pour créer un tableau authentique de vos réalisations.",
-            "Chaque détail compte : descriptions précises et images percutantes capturant l'essence de votre travail. Partagez ce qui vous motive et passionne.",
-            "Un portfolio authentique attire l'attention et les opportunités. Vos futurs clients veulent découvrir la personne derrière les œuvres. Partagez votre regard et votre approche pour créer des connexions durables.",
-            "C'est votre espace pour briller. Soyez authentique, unique, et laissez votre portfolio raconter votre histoire de manière mémorable."
+            "Votre portfolio est plus qu'une collection de travaux; c'est une <strong>galerie</strong> vivante illustrant votre parcours et vos compétences. Ajoutez des projets marquants pour créer un tableau authentique de vos réalisations.",
+            "Chaque détail compte : descriptions précises et images percutantes capturant l'essence de votre travail. <strong>Partagez</strong> ce qui vous motive et passionne.",
+            "Un portfolio authentique attire l'attention et les <strong>opportunités</strong>. Vos futurs clients veulent découvrir la personne derrière les œuvres. Partagez <strong>votre regard</strong> et votre approche pour créer des connexions durables.",
+            "C'est votre espace pour briller. Soyez authentique, <strong>unique</strong>, et laissez votre portfolio raconter votre histoire de manière mémorable."
           ]}
         />
       </div>

@@ -23,19 +23,19 @@ const sections = [
         logo: <GraduationCap />,
         title: 'Accédez à des Opportunités Exclusives',
         description:
-          'Accédez à des projets exclusifs adaptés à vos compétences et intérêts. Trouvez des missions qui vous passionnent et développez votre carrière freelance avec des clients de qualité.'
+          'Accédez à des projets <strong>exclusifs</strong> adaptés à vos compétences et intérêts. Trouvez des missions qui <strong>vous passionnent</strong> et <strong>développez votre carrière</strong> freelance avec des clients de qualité.'
       },
       {
         logo: <LiaUsersSolid size={35} />,
         title: 'Rejoignez une Communauté de Créatifs',
         description:
-          "Rejoignez une communauté dynamique de freelances et de créatifs. Échangez, collaborez et grandissez ensemble dans un environnement de soutien et d'inspiration."
+          "Rejoignez une <strong>communauté dynamique</strong> de freelances et de créatifs. Échangez, collaborez et grandissez ensemble dans un <strong>environnement de soutien</strong> et d'inspiration."
       },
       {
         logo: <GalleryVerticalEnd />,
         title: 'Créez un Portfolio à votre image',
         description:
-          "Créez un portfolio en ligne époustouflant et mettez en avant votre style unique. Attirez l'attention des meilleurs clients et faites-vous remarquer."
+          "Créez un portfolio en ligne époustouflant et mettez en avant <strong>votre style unique. Attirez l'attention</strong> des meilleurs clients et faites-vous remarquer."
       }
     ]
   },
@@ -50,20 +50,20 @@ const sections = [
         logo: <PencilRuler />,
         title: 'Découvrez des Talents Exceptionnels',
         description:
-          'Découvrez et engagez des freelances hautement qualifiés pour vos projets. Accédez à un vivier de talents diversifiés et sélectionnez les meilleurs profils pour répondre à vos besoins spécifiques.'
+          'Découvrez et engagez des freelances hautement qualifiés pour vos projets. Accédez à un vivier de talents diversifiés et sélectionnez les meilleurs profils <strong>pour répondre à vos besoins spécifiques.</strong>'
       },
       {
         logo: <Sparkles />,
         title:
           "Utilisez un Algorithme Avancé via l'IA pour Trouver le Talent Idéal",
         description:
-          "Profitez de notre algorithme avancé basé sur l'IA pour rechercher des freelances par domaine de compétence, style et bien plus. Assurez-vous de trouver le talent parfait pour vos projets spécifiques."
+          "Profitez de notre <strong>algorithme avancé basé sur l'IA</strong> pour rechercher des freelances par domaine de compétence, style et bien plus. Assurez-vous de trouver le talent parfait pour vos projets spécifiques."
       },
       {
         logo: <GiProcessor size={30} />,
         title: 'Comprenez Mieux le Processus Créatif',
         description:
-          'En voyant le profil détaillé du freelance, vous savez qui vous avez en face de vous. Vous comprenez mieux comment il construit ses idées. Cela vous permet de mieux comprendre son processus créatif, de faire des sélections plus éclairées.'
+          'En voyant le profil détaillé du freelance, <strong>vous savez qui vous avez en face de vous</strong>. Vous comprenez mieux comment il construit ses idées. Cela vous permet de mieux <strong>comprendre son processus créatif</strong>, de faire des sélections plus éclairées.'
       }
     ]
   }
@@ -92,10 +92,10 @@ export const FreelanceSection = ({ ...props }: FreelanceSectionProps) => {
                   <div className="p-5 space-y-6">
                     <div>{item.logo}</div>
                     <div className="text-2xl font-medium"> {item.title} </div>
-                    <div className="font-light text-lg">
-                      {' '}
-                      {item.description}{' '}
-                    </div>
+                    <div
+                      className="font-light text-lg"
+                      dangerouslySetInnerHTML={{ __html: item.description }}
+                    />
                   </div>
                 </div>
               ))}

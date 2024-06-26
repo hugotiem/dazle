@@ -35,6 +35,10 @@ html {
   }
 }
 
+strong {
+  font-weight: bold;
+}
+
 .looper {
   width: 100%;
   overflow: hidden;
