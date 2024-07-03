@@ -22,11 +22,11 @@ import { WebflowSvg } from '../components/svg/webflow.svg';
 import { NotionSvg } from '../components/svg/notion.svg';
 import { GoogleSvg } from '../components/svg/google.svg';
 import { TikTokSvg } from '../components/svg/tiktok.svg';
+import { JoinBetaForm } from '../components/JoinBetaForm';
+import { TextGradient } from '../components/ui/text-gradient';
 
 const IndexPage: React.FC<PageProps> = () => {
   const scrollRef = React.useRef<HTMLDivElement>(null);
-
-  const [other, setOther] = React.useState(false);
 
   return (
     <Layout className="max-w-screen relative">
@@ -91,7 +91,7 @@ const IndexPage: React.FC<PageProps> = () => {
                     className="bg-transparent border border-black mx-auto dark:bg-white text-xl rounded-full w-fit text-black dark:text-white px-8 py-3"
                     onClick={(e) => scrollRef?.current?.scrollIntoView()}
                   >
-                    LEARN MORE
+                    LIRE PLUS
                   </button>
                 </div>
               </div>
@@ -138,10 +138,27 @@ const IndexPage: React.FC<PageProps> = () => {
           reversed={false}
           image="dazle-feed.png"
           items={[
-            "Explorez votre feed pour découvrir, vous inspirer et interagir. C'est un espace où les idées et les <strong>opportunités</strong> se révèlent.",
-            '<strong>Personnalisez</strong> votre feed pour refléter vos intérêts et aspirations. Suivez des projets et créateurs en accord avec votre <strong>vision</strong>.',
-            'Restez connecté avec la communauté. Commentez, partagez et engagez-vous avec le travail des autres.',
-            "<strong>Restez à jour</strong> avec les nouvelles de l'industrie et les succès de vos collègues. Nourrissez votre créativité et trouvez <strong>l'inspiration</strong> quotidienne."
+            <span>
+              Explorez votre feed pour découvrir, vous inspirer et interagir.
+              C'est un espace où les idées et les{' '}
+              <TextGradient>opportunités</TextGradient> se révèlent.
+            </span>,
+            <span>
+              <TextGradient>Personnalisez</TextGradient> votre feed pour
+              refléter vos intérêts et aspirations. Suivez des projets et
+              créateurs en accord avec votre <TextGradient>vision</TextGradient>
+              .
+            </span>,
+            <span>
+              Restez connecté avec la communauté. Commentez, partagez et
+              engagez-vous avec le travail des autres.
+            </span>,
+            <span>
+              <TextGradient>Restez à jour</TextGradient> avec les nouvelles de
+              l'industrie et les succès de vos collègues. Nourrissez votre
+              créativité et trouvez <TextGradient>l'inspiration</TextGradient>{' '}
+              quotidienne.
+            </span>
           ]}
         />
         <FeatureSection
@@ -150,10 +167,27 @@ const IndexPage: React.FC<PageProps> = () => {
           title="Montrez votre unicité : transformez votre profil Dazle en vitrine professionnelle"
           reversed
           items={[
-            "Votre profil sur Dazle est plus qu'une page : c'est l'expression de <strong>votre identité</strong> professionnelle, votre vision et votre parcours.",
-            'Présentez-vous de manière <strong>authentique</strong>. Ajoutez une photo, une biographie, et détaillez vos compétences et expériences. Chaque élément compose votre histoire unique.',
-            'Votre profil est votre <strong>vitrine</strong> personnelle. Exprimez vos passions, ambitions et réalisations avec des descriptions captivantes. Montrez ce que vous faites et pourquoi.',
-            '<strong>Soyez vous-même</strong> pour attirer les bonnes connexions et collaborations. Votre profil sur Dazle est votre espace pour briller et vous démarquer.'
+            <span>
+              Votre profil sur Dazle est plus qu'une page : c'est l'expression
+              de <TextGradient>votre identité</TextGradient> professionnelle,
+              votre vision et votre parcours.
+            </span>,
+            <span>
+              Présentez-vous de manière <TextGradient>authentique</TextGradient>
+              . Ajoutez une photo, une biographie, et détaillez vos compétences
+              et expériences. Chaque élément compose votre histoire unique.
+            </span>,
+            <span>
+              Votre profil est votre <TextGradient>vitrine</TextGradient>{' '}
+              personnelle. Exprimez vos passions, ambitions et réalisations avec
+              des descriptions captivantes. Montrez ce que vous faites et
+              pourquoi.
+            </span>,
+            <span>
+              <TextGradient>Soyez vous-même</TextGradient> pour attirer les
+              bonnes connexions et collaborations. Votre profil sur Dazle est
+              votre espace pour briller et vous démarquer.
+            </span>
           ]}
         />
         <FeatureSection
@@ -162,10 +196,30 @@ const IndexPage: React.FC<PageProps> = () => {
           reversed={false}
           image="dazle-portefolio.png"
           items={[
-            "Votre portfolio est plus qu'une collection de travaux; c'est une <strong>galerie</strong> vivante illustrant votre parcours et vos compétences. Ajoutez des projets marquants pour créer un tableau authentique de vos réalisations.",
-            "Chaque détail compte : descriptions précises et images percutantes capturant l'essence de votre travail. <strong>Partagez</strong> ce qui vous motive et passionne.",
-            "Un portfolio authentique attire l'attention et les <strong>opportunités</strong>. Vos futurs clients veulent découvrir la personne derrière les œuvres. Partagez <strong>votre regard</strong> et votre approche pour créer des connexions durables.",
-            "C'est votre espace pour briller. Soyez authentique, <strong>unique</strong>, et laissez votre portfolio raconter votre histoire de manière mémorable."
+            <span>
+              Votre portfolio est plus qu'une collection de travaux; c'est une{' '}
+              <TextGradient>galerie</TextGradient> vivante illustrant votre
+              parcours et vos compétences. Ajoutez des projets marquants pour
+              créer un tableau authentique de vos réalisations.
+            </span>,
+            <span>
+              Chaque détail compte : descriptions précises et images percutantes
+              capturant l'essence de votre travail.{' '}
+              <TextGradient>Partagez</TextGradient> ce qui vous motive et
+              passionne.
+            </span>,
+            <span>
+              Un portfolio authentique attire l'attention et les{' '}
+              <TextGradient>opportunités</TextGradient>. Vos futurs clients
+              veulent découvrir la personne derrière les œuvres. Partagez{' '}
+              <TextGradient>votre regard</TextGradient> et votre approche pour
+              créer des connexions durables.
+            </span>,
+            <span>
+              C'est votre espace pour briller. Soyez authentique,{' '}
+              <TextGradient>unique</TextGradient>, et laissez votre portfolio
+              raconter votre histoire de manière mémorable.
+            </span>
           ]}
         />
       </div>
@@ -174,78 +228,7 @@ const IndexPage: React.FC<PageProps> = () => {
       <div className="w-[75%] h-[1px] bg-neutral-200 mx-auto my-20"></div>
       <div className="absolute top-0 bg-gradient-to-b from-white to-transparent h-[100px]"></div>
       <TestimonialSection />
-
-      <AuroraBackground className="relative" id="join-wait-list-form">
-        <div className="absolute top-0 w-screen bg-gradient-to-b from-white to-transparent h-[100px]"></div>
-        <div className="absolute bottom-0 w-screen bg-gradient-to-t from-white to-transparent h-[100px]"></div>
-
-        <motion.div
-          initial={{ opacity: 0.0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{
-            delay: 0.3,
-            duration: 0.8,
-            ease: 'easeInOut'
-          }}
-          className="relative flex min-h-screen flex-col gap-4 items-center justify-center px-4"
-        >
-          <div className="text-3xl md:text-7xl font-bold dark:text-white text-center sm:w-1/2">
-            Propulsez votre créativité encore plus loin.
-          </div>
-          <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
-            Rejoins la Whitelist maintenant.
-          </div>
-          <div className="lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex flex-col space-y-4">
-            <input
-              className="p-3 border rounded-xl focus-visible:outline-none"
-              type="email"
-              name="email"
-              placeholder="Entrez votre email"
-              id="email"
-            />
-            <select
-              name="pets"
-              id="pet-select"
-              className="p-3 w-full border rounded-xl focus-visible:outline-none cursor-pointer"
-              style={{
-                WebkitAppearance: 'none'
-              }}
-              onChange={(e) => setOther(e.target.value === 'other')}
-            >
-              <option value="">--Veuillez choisir une option--</option>
-              <option value="graphiste">Graphiste</option>
-              <option value="designer">Designer UX/UI</option>
-              <option value="illustrateur">Illustrateur</option>
-              <option value="photographe">Photographe</option>
-              <option value="video-editeur">Vidéo-éditeur</option>
-              <option value="animateur">Animateur 2D/3D</option>
-              <option value="da">Directeur Artistique</option>
-              <option value="musicien">Musicien/Compositeur</option>
-              <option value="other">Autre</option>
-            </select>
-            {other && (
-              <input
-                className="p-3 w-full border rounded-xl focus-visible:outline-none"
-                type="text"
-                name="domain"
-                placeholder="Entrez votre profession"
-                id="domain"
-              />
-            )}
-            <input
-              className="p-3 w-full border rounded-xl focus-visible:outline-none"
-              type="tel"
-              name="tel"
-              placeholder="Entrez votre téléphone (optionnel)"
-              id="tel"
-            />
-          </div>
-
-          <button className="bg-black dark:bg-white rounded-full w-fit text-white dark:text-black px-4 py-2">
-            JOIN THE WHITELIST
-          </button>
-        </motion.div>
-      </AuroraBackground>
+      <JoinBetaForm />
       <Footer />
     </Layout>
   );

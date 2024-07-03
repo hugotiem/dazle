@@ -3,7 +3,7 @@ import React from 'react';
 export const Footer = () => {
   return (
     <footer className="sm:flex space-y-10 justify-between container mx-auto sm:px-16 px-5 py-14 font-light w-screen items-end">
-      <div className="sm:flex space-y-10 sm:space-x-20">
+      <div className="sm:flex space-y-10 sm:space-y-0 sm:space-x-20">
         <ul className="space-y-2">
           <li>Contact</li>
           <li>À propos</li>

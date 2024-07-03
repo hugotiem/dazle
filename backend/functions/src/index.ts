@@ -1,22 +1,17 @@
-/**
- * Import function triggers from their respective submodules:
- *
- * import {onCall} from "firebase-functions/v2/https";
- * import {onDocumentWritten} from "firebase-functions/v2/firestore";
- *
- * See a full list of supported triggers at https://firebase.google.com/docs/functions
- */
-
-import * as functions from 'firebase-functions';
+import { onRequest } from 'firebase-functions/v2/https';
 import * as admin from 'firebase-admin';
-// import * as logger from 'firebase-functions/logger';
+import * as logger from 'firebase-functions/logger';
+import serviceAccount from './config/dazle-66b05-firebase-adminsdk-yj01d-b3e18183f9.json';
 
 // Start writing functions
 // https://firebase.google.com/docs/functions/typescript
 
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount as admin.ServiceAccount)
+});
 const db = admin.firestore();
 
-exports.signup = functions.https.onRequest(async (req, res) => {
+exports.betaSignup = onRequest(async (req, res) => {
   try {
     const { email, job, phoneNumber } = req.body;
 
@@ -27,22 +22,18 @@ exports.signup = functions.https.onRequest(async (req, res) => {
       .where('email', '==', email)
       .get();
 
-    if (existing.empty) {
+    if (existing) {
       const doc = await db
         .collection('waitList')
         .add({ email, job, phoneNumber });
 
       res.status(200).json({ success: true, id: doc.id });
+      return;
     }
-    throw Error('User already signed in')
   } catch (e) {
+    logger.error('error while exectuting api: ', e);
     res.status(400).json({
       error: e
     });
   }
 });
-
-// export const helloWorld = onRequest((request, response) => {
-//   logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });

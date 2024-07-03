@@ -8,7 +8,7 @@ import { ActionButton } from './ActionButton';
 import { BackgroundGradientAnimation } from './ui/background-gradient-animation';
 
 interface FeatureSectionProps extends HTMLAttributes<HTMLElement> {
-  items: string[];
+  items: React.JSX.Element[];
   image: string;
   reversed: boolean;
   tag: string;
@@ -35,16 +35,19 @@ export const FeatureSection = ({
         )}
       >
         <div className="flex flex-1 flex-col items-start space-y-7">
-          <div className="font-black">{tag.toUpperCase()}</div>
+          <div className="bg-neutral-900 px-2 rounded">
+            <div className="font-black bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 text-transparent bg-clip-text">
+              {tag.toUpperCase()}
+            </div>
+          </div>
           <div className="font-bold text-2xl">{title}</div>
           <div className="space-y-3">
             {items.map((e) => (
               <div key={items.indexOf(e)} className="flex space-x-4">
                 <div className="flex-none mt-2 h-3 w-3 rounded-full bg-neutral-900"></div>
-                <div
-                  className="flex-1 text-xl text-neutral-500 font-medium"
-                  dangerouslySetInnerHTML={{ __html: e }}
-                />
+                <div className="flex-1 text-xl text-neutral-500 font-medium">
+                  {e}
+                </div>
               </div>
             ))}
           </div>

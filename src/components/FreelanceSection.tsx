@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { LiaUsersSolid } from 'react-icons/lia';
 import { GiProcessor } from 'react-icons/gi';
+import { TextGradient } from './ui/text-gradient';
 
 const sections = [
   {
@@ -22,20 +23,39 @@ const sections = [
       {
         logo: <GraduationCap />,
         title: 'Accédez à des Opportunités Exclusives',
-        description:
-          'Accédez à des projets <strong>exclusifs</strong> adaptés à vos compétences et intérêts. Trouvez des missions qui <strong>vous passionnent</strong> et <strong>développez votre carrière</strong> freelance avec des clients de qualité.'
+        description: (
+          <span>
+            Accédez à des projets <TextGradient>exclusifs</TextGradient> adaptés
+            à vos compétences et intérêts. Trouvez des missions qui{' '}
+            <TextGradient>vous passionnent</TextGradient> et{' '}
+            <TextGradient>développez votre carrière</TextGradient> freelance
+            avec des clients de qualité.
+          </span>
+        )
       },
       {
         logo: <LiaUsersSolid size={35} />,
         title: 'Rejoignez une Communauté de Créatifs',
-        description:
-          "Rejoignez une <strong>communauté dynamique</strong> de freelances et de créatifs. Échangez, collaborez et grandissez ensemble dans un <strong>environnement de soutien</strong> et d'inspiration."
+        description: (
+          <span>
+            Rejoignez une <TextGradient>communauté dynamique</TextGradient> de
+            freelances et de créatifs. Échangez, collaborez et grandissez
+            ensemble dans un{' '}
+            <TextGradient>environnement de soutien</TextGradient> et
+            d'inspiration.
+          </span>
+        )
       },
       {
         logo: <GalleryVerticalEnd />,
         title: 'Créez un Portfolio à votre image',
-        description:
-          "Créez un portfolio en ligne époustouflant et mettez en avant <strong>votre style unique. Attirez l'attention</strong> des meilleurs clients et faites-vous remarquer."
+        description: (
+          <span>
+            Créez un portfolio en ligne époustouflant et mettez en avant{' '}
+            <TextGradient>votre style unique. Attirez l'attention</TextGradient>{' '}
+            des meilleurs clients et faites-vous remarquer.
+          </span>
+        )
       }
     ]
   },
@@ -49,21 +69,46 @@ const sections = [
       {
         logo: <PencilRuler />,
         title: 'Découvrez des Talents Exceptionnels',
-        description:
-          'Découvrez et engagez des freelances hautement qualifiés pour vos projets. Accédez à un vivier de talents diversifiés et sélectionnez les meilleurs profils <strong>pour répondre à vos besoins spécifiques.</strong>'
+        description: (
+          <span>
+            Découvrez et engagez des freelances hautement qualifiés pour vos
+            projets. Accédez à un vivier de talents diversifiés et sélectionnez
+            les meilleurs profils{' '}
+            <TextGradient>
+              pour répondre à vos besoins spécifiques.
+            </TextGradient>
+          </span>
+        )
       },
       {
         logo: <Sparkles />,
         title:
           "Utilisez un Algorithme Avancé via l'IA pour Trouver le Talent Idéal",
-        description:
-          "Profitez de notre <strong>algorithme avancé basé sur l'IA</strong> pour rechercher des freelances par domaine de compétence, style et bien plus. Assurez-vous de trouver le talent parfait pour vos projets spécifiques."
+        description: (
+          <span>
+            Profitez de notre{' '}
+            <TextGradient>algorithme avancé basé sur l'IA</TextGradient> pour
+            rechercher des freelances par domaine de compétence, style et bien
+            plus. Assurez-vous de trouver le talent parfait pour vos projets
+            spécifiques.
+          </span>
+        )
       },
       {
         logo: <GiProcessor size={30} />,
         title: 'Comprenez Mieux le Processus Créatif',
-        description:
-          'En voyant le profil détaillé du freelance, <strong>vous savez qui vous avez en face de vous</strong>. Vous comprenez mieux comment il construit ses idées. Cela vous permet de mieux <strong>comprendre son processus créatif</strong>, de faire des sélections plus éclairées.'
+        description: (
+          <span>
+            En voyant le profil détaillé du freelance,{' '}
+            <TextGradient>
+              vous savez qui vous avez en face de vous
+            </TextGradient>
+            . Vous comprenez mieux comment il construit ses idées. Cela vous
+            permet de mieux{' '}
+            <TextGradient>comprendre son processus créatif</TextGradient>, de
+            faire des sélections plus éclairées.
+          </span>
+        )
       }
     ]
   }
@@ -92,10 +137,7 @@ export const FreelanceSection = ({ ...props }: FreelanceSectionProps) => {
                   <div className="p-5 space-y-6">
                     <div>{item.logo}</div>
                     <div className="text-2xl font-medium"> {item.title} </div>
-                    <div
-                      className="font-light text-lg"
-                      dangerouslySetInnerHTML={{ __html: item.description }}
-                    />
+                    <div className="font-light text-lg">{item.description}</div>
                   </div>
                 </div>
               ))}
