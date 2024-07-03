@@ -3,5 +3,8 @@ node_modules/
 public
 src/gatsby-types.d.ts
 .env.*
-backend/config
+backend/functions/src/config/*
 backend/functions/.env
+
+backend/functions/src/config/dazle-66b05-firebase-adminsdk-yj01d-b3e18183f9.json
+backend/functions/lib/
