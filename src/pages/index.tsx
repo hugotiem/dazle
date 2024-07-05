@@ -119,7 +119,6 @@ const IndexPage: React.FC<PageProps> = () => {
         </BackgroundGradientAnimation>
       </div>
       <div className="flex flex-col items-center my-10 text-sm font-bold">
-        <div>ILS S'INTERESSENT A NOUS</div>
         <InfiniteLooper direction="left" speed={15}>
           <AdobeSvg />
           <SpotifySvg />
@@ -130,6 +129,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <GoogleSvg />
           <TikTokSvg />
         </InfiniteLooper>
+        <div>ILS S'INTERESSENT A NOUS</div>
       </div>
       <div className="space-y-10" ref={scrollRef}>
         <FeatureSection

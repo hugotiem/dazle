@@ -2,16 +2,25 @@ import React, { useState } from 'react';
 import { AuroraBackground } from './ui/aurora-background';
 import { motion } from 'framer-motion';
 
+import { useToast } from '@/components/ui/use-toast';
+
 export const JoinBetaForm = () => {
   const [other, setOther] = React.useState(false);
 
   const [isLoading, setLoading] = useState(false);
+
+  const [text, setText] = useState({
+    title: 'Propulsez votre créativité encore plus loin.',
+    description: 'Rejoins la Bêta maintenant.'
+  });
 
   const [formData, setFormData] = useState({
     job: '',
     email: '',
     phoneNumber: ''
   });
+
+  const { toast } = useToast();
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLSelectElement | HTMLInputElement>
@@ -26,17 +35,31 @@ export const JoinBetaForm = () => {
     fetch(process.env.SIGN_UP_FUNCTION_URL!, {
       method: 'POST',
       headers: {
-        'Content-Type': 'application/json',
+        'Content-Type': 'application/json'
       },
       body: JSON.stringify(formData)
     })
       .then(async (res) => {
-        // if (!res.ok) throw Error('an error has occurred');
-        console.log(res);
-        const body = await res.json();
-        console.log(body);
+        if (!res.ok) throw Error('an error has occurred');
+        // const body = await res.json();
+        toast({
+          title: 'Inscription réussi',
+          description: 'Votre inscription a bien été prise en compte.'
+        });
+
+        setText({
+          title: 'Merci d\'avoir rejoint la Bêta !',
+          description: 'Nous vous contacterons au plus vite.'
+        })
       })
-      .catch((e) => console.error('API ERROR: ', e))
+      .catch((e) => {
+        console.error('API ERROR: ', e);
+        toast({
+          title: "Echec de l'inscription",
+          description:
+            "Une erreur est survenue lors de l'inscription. Veuillez réessayer plus tard."
+        });
+      })
       .finally(() => setLoading(false));
   };
 
@@ -56,10 +79,10 @@ export const JoinBetaForm = () => {
         className="relative flex min-h-screen flex-col gap-4 items-center justify-center px-4"
       >
         <div className="text-3xl md:text-7xl font-bold dark:text-white text-center sm:w-1/2">
-          Propulsez votre créativité encore plus loin.
+          {text.title}
         </div>
         <div className="font-extralight text-base md:text-4xl dark:text-neutral-200 py-4">
-          Rejoins la Whitelist maintenant.
+          {text.description}
         </div>
         <div className="lg:w-1/4 md:w-1/3 sm:w-1/2 w-full flex flex-col space-y-4">
           <input
@@ -125,7 +148,7 @@ export const JoinBetaForm = () => {
           disabled={isLoading}
           onClick={sendForm}
         >
-          JOIN THE WHITELIST
+          REJOINDRE
         </button>
       </motion.div>
     </AuroraBackground>

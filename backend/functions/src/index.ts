@@ -22,7 +22,7 @@ exports.betaSignup = onRequest(async (req, res) => {
       .where('email', '==', email)
       .get();
 
-    if (existing) {
+    if (existing.empty) {
       const doc = await db
         .collection('waitList')
         .add({ email, job, phoneNumber });
