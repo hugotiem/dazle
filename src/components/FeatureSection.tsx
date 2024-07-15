@@ -13,6 +13,7 @@ interface FeatureSectionProps extends HTMLAttributes<HTMLElement> {
   reversed: boolean;
   tag: string;
   title: string;
+  query: any;
 }
 
 export const FeatureSection = ({
@@ -21,6 +22,7 @@ export const FeatureSection = ({
   image,
   tag,
   title,
+  query,
   ...props
 }: FeatureSectionProps) => {
   return (
@@ -71,15 +73,9 @@ export const FeatureSection = ({
                   </div>
 
                   <div className="relative bg-white rounded-b-lg aspect-video">
-                    <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.4 }}
-                      className=" w-full h-full"
-                    >
-                      <DynamicImage src={image} alt="" />
-                    </motion.div>
+                    <div className=" w-full h-full">
+                      <DynamicImage query={query} src={image} alt="" />
+                    </div>
                   </div>
                 </figure>
               </div>

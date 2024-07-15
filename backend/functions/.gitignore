@@ -11,3 +11,6 @@ node_modules/
 *.local
 
 src/config/dazle-66b05-firebase-adminsdk-yj01d-b3e18183f9.json
+
+src/config/*
+.env

@@ -1,6 +1,4 @@
-import React, { HTMLAttributes, useEffect, useRef, useState } from 'react';
-import { FadeCard } from './ui/fade-card';
-import { FlipWords } from './ui/flip-words';
+import React, { HTMLAttributes } from 'react';
 import { BackgroundGradientAnimation } from './ui/background-gradient-animation';
 import {
   GalleryVerticalEnd,

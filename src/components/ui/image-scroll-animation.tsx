@@ -7,6 +7,7 @@ import { DynamicImage } from './relative-path-image';
 
 interface ImageScrollAnimationProps extends HTMLAttributes<HTMLElement> {
   image: string;
+  query: any;
   transform?: [from: number, to: number];
 }
 
@@ -14,6 +15,7 @@ export const ImageScrollAnimation = ({
   image,
   className,
   transform,
+  query,
   ...props
 }: ImageScrollAnimationProps) => {
   const containerRef = useRef<any>(null);
@@ -35,7 +37,7 @@ export const ImageScrollAnimation = ({
         }}
       >
         {image ? (
-          <DynamicImage src={image} alt="A descriptive alt text" />
+          <DynamicImage query={query} src={image} alt="A descriptive alt text" />
         ) : undefined}
       </motion.div>
     </div>

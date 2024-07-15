@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { type HeadFC, type PageProps } from 'gatsby';
+import { graphql, type HeadFC, type PageProps } from 'gatsby';
 import { SEO } from '../components/SEO';
 import { Layout } from '../components/Layout';
 import { Navbar } from '../components/Navbar';
@@ -25,8 +25,10 @@ import { TikTokSvg } from '../components/svg/tiktok.svg';
 import { JoinBetaForm } from '../components/JoinBetaForm';
 import { TextGradient } from '../components/ui/text-gradient';
 
-const IndexPage: React.FC<PageProps> = () => {
+const IndexPage: React.FC<PageProps> = ({ data }) => {
   const scrollRef = React.useRef<HTMLDivElement>(null);
+
+  const query = (data as any).image;
 
   return (
     <Layout className="max-w-screen relative">
@@ -37,6 +39,7 @@ const IndexPage: React.FC<PageProps> = () => {
           <div className="absolute h-screen z-50 pointer-events-none">
             <div className="relative w-screen">
               <ImageScrollAnimation
+                query={query}
                 image="orange-glossy-inflatable-cube.png"
                 transform={[0, -1000]}
                 className="absolute w-full w-[70vw] top-[30vh] right-[-30vw]"
@@ -97,6 +100,7 @@ const IndexPage: React.FC<PageProps> = () => {
               </div>
             </div>
             <ImageScrollAnimation
+              query={query}
               image="red-ring-inflatable-shape.png"
               className="absolute z-100 w-full w-[70vw] top-[10vh] left-[-20vw] w-[40vw]"
               transform={[0, -500]}
@@ -133,6 +137,7 @@ const IndexPage: React.FC<PageProps> = () => {
       </div>
       <div className="space-y-10" ref={scrollRef}>
         <FeatureSection
+          query={query}
           tag="Feed"
           title="Découvrez et connectez-vous : transformez votre feed Dazle en source d'inspiration et d'opportunités"
           reversed={false}
@@ -162,6 +167,7 @@ const IndexPage: React.FC<PageProps> = () => {
           ]}
         />
         <FeatureSection
+          query={query}
           tag="Profil"
           image="dazle-profile.png"
           title="Montrez votre unicité : transformez votre profil Dazle en vitrine professionnelle"
@@ -191,6 +197,7 @@ const IndexPage: React.FC<PageProps> = () => {
           ]}
         />
         <FeatureSection
+          query={query}
           tag="Portefolio"
           title="Montrez votre talent : transformez votre portfolio Dazle en galerie vivante"
           reversed={false}
@@ -236,8 +243,33 @@ const IndexPage: React.FC<PageProps> = () => {
 
 export default IndexPage;
 
+export const query = graphql`
+  query {
+    images: allFile {
+      edges {
+        node {
+          relativePath
+          childImageSharp {
+            gatsbyImageData(layout: CONSTRAINED, placeholder: NONE)
+          }
+        }
+      }
+    }
+  }
+`;
+
 export const Head: HeadFC = () => (
-  <SEO title="Home Page">
-    <link></link>
+  <SEO title="Dazle">
+    <meta name="description" content="La nouvelle ère du freelancing créatif" />
+    <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
+    <meta name="keywords" content="dazle" />
+    <meta property="og:title" content="Dazle" />
+    <meta
+      name="og:description"
+      content="La nouvelle ère du freelancing créatif"
+    />
+    <meta name="og:url" content="https://dazle.fr" />
+    <meta name="og:locale" content="fr_FR" />
+    <meta property="og:type" content="website" />
   </SEO>
 );

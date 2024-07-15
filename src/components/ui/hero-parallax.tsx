@@ -7,8 +7,6 @@ import {
   useSpring,
   MotionValue
 } from 'framer-motion';
-import { Link } from 'gatsby';
-import { DynamicImage } from './relative-path-image';
 import { FaRegStar, FaStar } from 'react-icons/fa';
 
 export const HeroParallax = ({
@@ -164,8 +162,6 @@ export const ProductCard = ({
                   if (!full) return <FaRegStar color="grey" />;
                   return <FaStar color="orange" />;
                 }
-
-                // <Star />
               )}
             </div>
           </div>

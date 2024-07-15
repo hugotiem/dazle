@@ -11,7 +11,7 @@ export const JoinBetaForm = () => {
 
   const [text, setText] = useState({
     title: 'Propulsez votre créativité encore plus loin.',
-    description: 'Rejoins la Bêta maintenant.'
+    description: 'Rejoignez la Bêta maintenant.'
   });
 
   const [formData, setFormData] = useState({

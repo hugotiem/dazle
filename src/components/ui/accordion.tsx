@@ -1,4 +1,4 @@
-import React, { HTMLAttributes, useRef, useState } from 'react';
+import React, { HTMLAttributes, useRef } from 'react';
 import { cn } from '../../utils/cn';
 
 interface AccordionItemProps extends HTMLAttributes<HTMLElement> {

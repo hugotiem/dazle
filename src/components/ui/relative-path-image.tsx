@@ -1,15 +1,14 @@
 import { graphql, useStaticQuery } from 'gatsby';
 import {
   GatsbyImage,
-  GatsbyImageProps,
   getImage,
-  getImageData
 } from 'gatsby-plugin-image';
 import React from 'react';
 
 interface DynamicImageProps {
   src: string;
   alt: string;
+  query: any;
 }
 
 export const DynamicImage = ({ src, ...props }: DynamicImageProps) => {

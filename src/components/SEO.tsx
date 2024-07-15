@@ -2,7 +2,7 @@ import React from 'react';
 
 interface SEOProps {
   title: string;
-  children: React.JSX.Element;
+  children: React.JSX.Element[];
 }
 
 export const SEO = ({ children, title }: SEOProps) => (

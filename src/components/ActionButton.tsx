@@ -14,7 +14,7 @@ export const ActionButton = ({
     <div {...props}>
       <div className="relative inline-flex group event-pointer-auto">
         {!outline && (
-          <motion.div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-tr from-blue-400 via-pink-400 to-white rounded-full blur-lg group-hover:opacity-80 group-hover:-inset-1 group-hover:duration-200"></motion.div>
+          <div className="absolute transition-all duration-1000 opacity-70 -inset-px bg-gradient-to-tr from-blue-400 via-pink-400 to-white rounded-full blur-lg group-hover:opacity-80 group-hover:-inset-1 group-hover:duration-200"></div>
         )}
         <a
           href="#join-wait-list-form"
