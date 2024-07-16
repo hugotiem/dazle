@@ -10,6 +10,9 @@ export const onCreateWebpackConfig: GatsbyNode['onCreateWebpackConfig'] = ({
         '@/components': path.resolve(__dirname, 'src/components'),
         '@/lib/utils': path.resolve(__dirname, 'src/lib/utils')
       }
-    }
+    },
+    watchOptions: {
+      ignored: /node_modules|\.cache|public|dist/
+    },
   });
 };

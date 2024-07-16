@@ -1,9 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { graphql, useStaticQuery } from 'gatsby';
-import { GatsbyImage } from 'gatsby-plugin-image';
 import React, { HTMLAttributes, useRef } from 'react';
-import { cn } from '../../utils/cn';
 import { DynamicImage } from './relative-path-image';
+import { cn } from '@/lib/utils';
 
 interface ImageScrollAnimationProps extends HTMLAttributes<HTMLElement> {
   image: string;

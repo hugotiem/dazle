@@ -1,5 +1,5 @@
+import { cn } from '@/lib/utils';
 import React, { HTMLAttributes, ReactNode } from 'react';
-import { cn } from '../../utils/cn';
 
 interface TextGradientProps extends HTMLAttributes<HTMLElement> {
   children?: ReactNode;

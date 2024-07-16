@@ -1,6 +1,6 @@
 import React, { HTMLAttributes } from 'react';
-import { cn } from '../utils/cn';
 import { Toaster } from './ui/toaster';
+import { cn } from '@/lib/utils';
 
 interface LayoutProps extends HTMLAttributes<HTMLElement> {
   children?: React.ReactNode;

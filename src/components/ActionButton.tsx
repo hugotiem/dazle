@@ -1,6 +1,6 @@
-import { motion } from 'framer-motion';
+import { cn } from '@/lib/utils';
 import React, { HTMLAttributes } from 'react';
-import { cn } from '../utils/cn';
+
 
 interface ActionButtonProps extends HTMLAttributes<HTMLElement> {
   outline?: boolean;

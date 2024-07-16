@@ -1,29 +1,28 @@
 import * as React from 'react';
 import { graphql, type HeadFC, type PageProps } from 'gatsby';
-import { SEO } from '../components/SEO';
-import { Layout } from '../components/Layout';
-import { Navbar } from '../components/Navbar';
+import { SEO } from '@/components/SEO';
+import { Layout } from '@/components/Layout';
+import { Navbar } from '@/components/Navbar';
 import { motion } from 'framer-motion';
-import { ImageScrollAnimation } from '../components/ui/image-scroll-animation';
-import { Footer } from '../components/Footer';
-import { FeatureSection } from '../components/FeatureSection';
-import { BackgroundGradientAnimation } from '../components/ui/background-gradient-animation';
-import { TestimonialSection } from '../components/TestimonialSection';
-import { AuroraBackground } from '../components/ui/aurora-background';
+import { ImageScrollAnimation } from '@/components/ui/image-scroll-animation';
+import { Footer } from '@/components/Footer';
+import { FeatureSection } from '@/components/FeatureSection';
+import { BackgroundGradientAnimation } from '@/components/ui/background-gradient-animation';
+import { TestimonialSection } from '@/components/TestimonialSection';
 import { ArrowDown } from 'lucide-react';
-import { ActionButton } from '../components/ActionButton';
-import { FreelanceSection } from '../components/FreelanceSection';
-import InfiniteLooper from '../components/ui/infinit-looper';
-import { AdobeSvg } from '../components/svg/adobe.svg';
-import { SpotifySvg } from '../components/svg/spotify.svg';
-import { FigmaSvg } from '../components/svg/figma.svg';
-import { FramerSvg } from '../components/svg/framer.svg';
-import { WebflowSvg } from '../components/svg/webflow.svg';
-import { NotionSvg } from '../components/svg/notion.svg';
-import { GoogleSvg } from '../components/svg/google.svg';
-import { TikTokSvg } from '../components/svg/tiktok.svg';
-import { JoinBetaForm } from '../components/JoinBetaForm';
-import { TextGradient } from '../components/ui/text-gradient';
+import { ActionButton } from '@/components/ActionButton';
+import { FreelanceSection } from '@/components/FreelanceSection';
+import InfiniteLooper from '@/components/ui/infinit-looper';
+import { AdobeSvg } from '@/components/svg/adobe.svg';
+import { SpotifySvg } from '@/components/svg/spotify.svg';
+import { FigmaSvg } from '@/components/svg/figma.svg';
+import { FramerSvg } from '@/components/svg/framer.svg';
+import { WebflowSvg } from '@/components/svg/webflow.svg';
+import { NotionSvg } from '@/components/svg/notion.svg';
+import { GoogleSvg } from '@/components/svg/google.svg';
+import { TikTokSvg } from '@/components/svg/tiktok.svg';
+import { JoinBetaForm } from '@/components/JoinBetaForm';
+import { TextGradient } from '@/components/ui/text-gradient';
 
 const IndexPage: React.FC<PageProps> = ({ data }) => {
   const scrollRef = React.useRef<HTMLDivElement>(null);
@@ -122,6 +121,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
           </div>
         </BackgroundGradientAnimation>
       </div>
+      
       <div className="flex flex-col items-center my-10 text-sm font-bold">
         <InfiniteLooper direction="left" speed={15}>
           <AdobeSvg />
@@ -236,7 +236,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
       <div className="absolute top-0 bg-gradient-to-b from-white to-transparent h-[100px]"></div>
       <TestimonialSection />
       <JoinBetaForm />
-      <Footer />
+      <Footer /> 
     </Layout>
   );
 };
@@ -262,14 +262,17 @@ export const Head: HeadFC = () => (
   <SEO title="Dazle">
     <meta name="description" content="La nouvelle ère du freelancing créatif" />
     <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
-    <meta name="keywords" content="dazle" />
+    <meta
+      name="keywords"
+      content="dazle, freelance, freelancing, social, network"
+    />
     <meta property="og:title" content="Dazle" />
     <meta
-      name="og:description"
+      property="og:description"
       content="La nouvelle ère du freelancing créatif"
     />
-    <meta name="og:url" content="https://dazle.fr" />
-    <meta name="og:locale" content="fr_FR" />
+    <meta property="og:url" content="https://dazle.fr" />
+    <meta property="og:locale" content="fr_FR" />
     <meta property="og:type" content="website" />
   </SEO>
 );

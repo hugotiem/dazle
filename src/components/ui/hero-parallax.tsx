@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import {
   motion,
@@ -71,29 +70,32 @@ export const HeroParallax = ({
         className=""
       >
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-20 mb-20">
-          {firstRow.map((product) => (
-            <ProductCard
-              product={product}
-              translate={translateX}
-              key={product.username}
-            />
-          ))}
+          {firstRow.map((product, index) => {
+            console.log(product.username);
+            return (
+              <ProductCard
+                product={product}
+                translate={translateX}
+                key={index}
+              />
+            );
+          })}
         </motion.div>
         <motion.div className="flex flex-row  mb-20 space-x-20 ">
-          {secondRow.map((product) => (
+          {secondRow.map((product, index) => (
             <ProductCard
               product={product}
               translate={translateXReverse}
-              key={product.username}
+              key={index+firstRow.length}
             />
           ))}
         </motion.div>
         <motion.div className="flex flex-row-reverse space-x-reverse space-x-20">
-          {thirdRow.map((product) => (
+          {thirdRow.map((product, index) => (
             <ProductCard
               product={product}
               translate={translateX}
-              key={product.username}
+             key={index+firstRow.length+secondRow.length}
             />
           ))}
         </motion.div>
@@ -156,13 +158,11 @@ export const ProductCard = ({
             <div className="text-xl font-medium">{product.name}</div>
             <div className="text-base font-light">{product.username}</div>
             <div className="flex space-x-1">
-              {[0, 0, 0, 0, 0].map(
-                (e, index) => {
-                  const full = index < product.rate;
-                  if (!full) return <FaRegStar color="grey" />;
-                  return <FaStar color="orange" />;
-                }
-              )}
+              {[0, 0, 0, 0, 0].map((e, index) => {
+                const full = index < product.rate;
+                if (!full) return <FaRegStar key={index} color="grey" />;
+                return <FaStar key={index} color="orange" />;
+              })}
             </div>
           </div>
         </div>

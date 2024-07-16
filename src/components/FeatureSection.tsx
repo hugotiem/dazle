@@ -1,11 +1,8 @@
-import React, { HTMLAttributes, useEffect, useRef, useState } from 'react';
-import Accordion from './ui/accordion';
+import React, { HTMLAttributes } from 'react';
 import { DynamicImage } from './ui/relative-path-image';
-import { ImageScrollAnimation } from './ui/image-scroll-animation';
-import { AnimatePresence, motion } from 'framer-motion';
-import { cn } from '../utils/cn';
 import { ActionButton } from './ActionButton';
 import { BackgroundGradientAnimation } from './ui/background-gradient-animation';
+import { cn } from '@/lib/utils';
 
 interface FeatureSectionProps extends HTMLAttributes<HTMLElement> {
   items: React.JSX.Element[];

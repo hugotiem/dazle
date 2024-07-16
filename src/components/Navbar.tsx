@@ -1,7 +1,7 @@
 import React, { HTMLAttributes } from 'react';
-import { cn } from '../utils/cn';
 import { ActionButton } from './ActionButton';
 import { Logo } from './svg/logo.svg';
+import { cn } from '@/lib/utils';
 
 interface NavbarProps extends HTMLAttributes<HTMLElement> {}
 
