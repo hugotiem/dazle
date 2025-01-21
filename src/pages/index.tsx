@@ -106,7 +106,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
             />
           </div>
           <div className="absolute flex flex-col justify-center items-center space-y-3 bottom-10 left-[50%] translate-x-[-50%] font-bold">
-            <div>Scroll to explore</div>
+            <>Scroll to explore</>
             <motion.div
               initial={{ translateY: 10 }}
               animate={{ translateY: 0 }}
@@ -121,7 +121,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
           </div>
         </BackgroundGradientAnimation>
       </div>
-      
+
       <div className="flex flex-col items-center my-10 text-sm font-bold">
         <InfiniteLooper direction="left" speed={15}>
           <AdobeSvg />
@@ -133,7 +133,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
           <GoogleSvg />
           <TikTokSvg />
         </InfiniteLooper>
-        <div>ILS S'INTERESSENT A NOUS</div>
+        <>ILS S'INTERESSENT A NOUS</>
       </div>
       <div className="space-y-10" ref={scrollRef}>
         <FeatureSection
@@ -236,7 +236,7 @@ const IndexPage: React.FC<PageProps> = ({ data }) => {
       <div className="absolute top-0 bg-gradient-to-b from-white to-transparent h-[100px]"></div>
       <TestimonialSection />
       <JoinBetaForm />
-      <Footer /> 
+      <Footer />
     </Layout>
   );
 };
@@ -248,6 +248,7 @@ export const query = graphql`
     images: allFile {
       edges {
         node {
+          id
           relativePath
           childImageSharp {
             gatsbyImageData(layout: CONSTRAINED, placeholder: NONE)
@@ -258,21 +259,30 @@ export const query = graphql`
   }
 `;
 
-export const Head: HeadFC = () => (
-  <SEO title="Dazle">
-    <meta name="description" content="La nouvelle ère du freelancing créatif" />
-    <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
-    <meta
-      name="keywords"
-      content="dazle, freelance, freelancing, social, network"
-    />
-    <meta property="og:title" content="Dazle" />
-    <meta
-      property="og:description"
-      content="La nouvelle ère du freelancing créatif"
-    />
-    <meta property="og:url" content="https://dazle.fr" />
-    <meta property="og:locale" content="fr_FR" />
-    <meta property="og:type" content="website" />
-  </SEO>
-);
+export const Head: HeadFC = ({ data }) => {
+  const images = (data as any).images.edges;
+  return (
+    <SEO title="Dazle">
+      <meta
+        name="description"
+        content="La nouvelle ère du freelancing créatif"
+      />
+      <meta httpEquiv="Content-Type" content="text/html;charset=UTF-8" />
+      <meta
+        name="keywords"
+        content="dazle, freelance, freelancing, social, network"
+      />
+      {images.map((e: { node: { id: string, childImageSharp: any } }) => (
+        <meta key={e.node.id} property='og:image' content={`https://dazle.fr${e.node.childImageSharp.gatsbyImageData.images.fallback.src}`}/>
+      ))}
+      <meta property="og:title" content="Dazle" />
+      <meta
+        property="og:description"
+        content="La nouvelle ère du freelancing créatif"
+      />
+      <meta property="og:url" content="https://dazle.fr" />
+      <meta property="og:locale" content="fr_FR" />
+      <meta property="og:type" content="website" />
+    </SEO>
+  );
+};

@@ -149,12 +149,8 @@ export const ProductCard = ({
         <div className="flex space-x-5">
           <div className="aspect-square h-20 bg-black rounded-full overflow-hidden">
             <img src={product.thumbnail} alt="" />
-            {/* <DynamicImage
-              src="light-pink-donut-shaped-inflatable-form-3.png"
-              alt=""
-            /> */}
           </div>
-          <div>
+          <>
             <div className="text-xl font-medium">{product.name}</div>
             <div className="text-base font-light">{product.username}</div>
             <div className="flex space-x-1">
@@ -164,7 +160,7 @@ export const ProductCard = ({
                 return <FaStar key={index} color="orange" />;
               })}
             </div>
-          </div>
+          </>
         </div>
         <div className="h-full flex flex-col mt-10">
           <p className="text-sm italic">{product.comment}</p>

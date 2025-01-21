@@ -133,7 +133,7 @@ export const FreelanceSection = ({ ...props }: FreelanceSectionProps) => {
                 >
                   <div className="bg-gradient-to-r from-pink-300 via-purple-300 to-blue-300 h-2"></div>
                   <div className="p-5 space-y-6">
-                    <div>{item.logo}</div>
+                    <>{item.logo}</>
                     <div className="text-2xl font-medium"> {item.title} </div>
                     <div className="font-light text-lg">{item.description}</div>
                   </div>
